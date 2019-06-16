@@ -369,7 +369,7 @@ COPY  ~Diablo2Kits/d2dru/spl/d2dru1.spl~ ~override~
 // Add HP
 COPY  ~Diablo2Kits/d2dru/spl/d2dru2.spl~ ~override~
 
-// Add apr
+// Add +1 APR
 COPY  ~Diablo2Kits/d2dru/spl/d2dru3.spl~ ~override~
 
 // Brave
