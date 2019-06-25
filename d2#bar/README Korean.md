@@ -1,12 +1,4 @@
-
-@1 = ~발더스 게이트(2) 인헨스트 에디션이 필요합니다.~
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// D2 Barbarian
-
-@11 = ~D2 바바리안~
-@12 = ~D2 바바리안~
-@13 = ~D2 바바리안
+# D2 바바리안
 
 문명의 외곽에 있는 여러 부족의 일원인 바바리안은 부드럽고 나약하다고 여기는 부족들의 영향력을 거부한다.
 끊임없는 씨족 전쟁과 적대적인 황야에서 살아남기 위한 투쟁은 바바리안의 건장하고 강력한 조직에서 뚜렷이 드러난다.
@@ -26,17 +18,19 @@
 - 캐릭터 생성시 지능과 지혜에 -1의 페널티를 받는다.
 - 활, 쇠뇌, 무릿매, 다트, 육척봉, 무기 스타일을 익힐 수 없다.
 - 디아블로2의 스킬트리와 마찬가지로 선행 스킬을 익혀야한다. (예: 샤우트를 익히기 위해서는 하울을 먼저 익혀야 한다.)
-- 파이터의 하이 레벨 어빌리티를 익힐 수 없다.~
+- 파이터의 하이 레벨 어빌리티를 익힐 수 없다.
 
-@101 = ~스킬 선택~
-@102 = ~워크라이 탭~
-@103 = ~컴뱃 마스터리 탭~
-@104 = ~컴뱃 스킬 탭~
 
-@110 = ~스킬 포인트~
 
-@111 = ~하울~
-@112 = ~하울
+------
+
+## ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/tab/Warcries.bmp>) 워크라이:
+
+- 워크라이의 모든 스킬은 일정 기간 동안 영향을 주는 스킬로 익히는 회수에 한계가 없다.
+- 모든 효과는 누적이 불가능하다.
+- 마법 저항은 무시한다.
+
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/howl.bmp>) 하울
 
 주변의 적이 주문 내성 굴림에 실패시 공포 상태가 된다.
 
@@ -47,10 +41,9 @@
   - 01레벨: +1 내성 굴림 실패시 2 라운드간 공포
   - 04레벨:  0 내성 굴림 실패시 3 라운드간 공포
   - 08레벨: -1 내성 굴림 실패시 4 라운드간 공포
-  - 12레벨: -2 내성 굴림 실패시 5 라운드간 공포~
+  - 12레벨: -2 내성 굴림 실패시 5 라운드간 공포
 
-@121 = ~샤우트~
-@122 = ~샤우트
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/shout.bmp>) 샤우트
 
 주변 아군의 방어력을 상승시킨다.
 
@@ -62,10 +55,9 @@
   - 04레벨: 2 턴간 방어력 +2
   - 08레벨: 3 턴간 방어력 +2
   - 12레벨: 4 턴간 방어력 +3
-  - 16레벨: 5 턴간 방어력 +4~
+  - 16레벨: 5 턴간 방어력 +4
 
-@123 = ~타운트~
-@124 = ~타운트
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/taunt.bmp>) 타운트
 
 선택한 대상의 내성 굴림을 무시하고 공격력을 하락시킨다.
 
@@ -77,10 +69,9 @@
   - 04레벨: 2 라운드간 THAC0와 공격력 -2
   - 08레벨: 3 라운드간 THAC0와 공격력 -2
   - 12레벨: 4 라운드간 THAC0와 공격력 -3
-  - 16레벨: 5 라운드간 THAC0와 공격력 -4~
+  - 16레벨: 5 라운드간 THAC0와 공격력 -4
 
-@141 = ~배틀 크라이~
-@142 = ~배틀 크라이
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/battlecry.bmp>) 배틀 크라이
 
 주변의 적이 주문 내성 굴림에 실패시 공포 상태가 되고 방어력과 공격력이 하락한다.
 
@@ -92,10 +83,9 @@
   - 12레벨:  0 내성굴림 실패시 2 라운드간 공포, 방어력과 공격력 -2
   - 16레벨: -1 내성굴림 실패시 3 라운드간 공포, 방어력과 공격력 -2
   - 20레벨: -2 내성굴림 실패시 4 라운드간 공포, 방어력과 공격력 -3
-  - 24레벨: -3 내성굴림 실패시 5 라운드간 공포, 방어력과 공격력 -4~
+  - 24레벨: -3 내성굴림 실패시 5 라운드간 공포, 방어력과 공격력 -4
 
-@161 = ~배틀 오더~
-@162 = ~배틀 오더
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/battleorders.bmp>) 배틀 오더
 
 주변 아군의 생명력을 상승시킨다.
 
@@ -107,10 +97,9 @@
   - 20레벨: 2 턴간 생명력 12% 상승
   - 24레벨: 3 턴간 생명력 18% 상승
   - 28레벨: 4 턴간 생명력 24% 상승
-  - 32레벨: 5 턴간 생명력 30% 상승~
+  - 32레벨: 5 턴간 생명력 30% 상승
 
-@163 = ~워 크라이~
-@164 = ~워 크라이
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/warcry.bmp>) 워 크라이
 
 주변 적의 마법 저항과 내성 굴림을 무시하고 기절시키고 마법 피해를 준다.
 
@@ -122,9 +111,9 @@
   - 20레벨: 2 초간 스턴, 마법 피해 2D5
   - 24레벨: 3 초간 스턴, 마법 피해 4D5
   - 28레벨: 4 초간 스턴, 마법 피해 6D5
-  - 32레벨: 5 초간 스턴, 마법 피해 8D5~
+  - 32레벨: 5 초간 스턴, 마법 피해 8D5
 
-@165 = ~배틀 코맨드
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/battlecommand.bmp>) 배틀 코맨드
 
 주변 아군의 스킬을 상승시킨다. (방어력,내성굴림,THAC0,공격력,시전시간,무기속도 +1)
 
@@ -136,67 +125,74 @@
   - 20레벨: 2 턴
   - 24레벨: 3 턴
   - 28레벨: 4 턴
-  - 32레벨: 5 턴~
+  - 32레벨: 5 턴
 
-@221 = ~쌍수 무기 스타일 마스터리~
-@222 = ~쌍수 무기 스타일 마스터리
+------
+
+## ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/tab/CombatMasteries.bmp>) 컴뱃 마스터리:
+
+- 컴뱃 마스터리의 모든 스킬은 패시브 스킬로 영구적으로 적용된다.
+- 무기 마스터리는 셋 중 하나만 익힐 수 있으며 하이 레벨 어빌리티에서 익힐 수 없고 스킬 포인트로만 익힐 수 있다.
+
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/swordmastery.bmp>) 쌍수 무기 스타일 마스터리
 
 쌍수 무기 스타일을 마스터(3슬롯)한다.
 
 - 레벨: 4
 - 대상: 시전자
-- 선택 가능: 1회~
+- 선택 가능: 1회
 
-@223 = ~양손 무기 스타일 마스터리~
-@224 = ~양손 무기 스타일 마스터리
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/polearmmastery.bmp>) 양손 무기 스타일 마스터리
 
 양손 무기 스타일을 마스터(2슬롯)한다.
 
 - 레벨: 4
 - 대상: 시전자
-- 선택 가능: 1회~
+- 선택 가능: 1회
 
-@225 = ~쓰로잉 마스터리~
-@226 = ~쓰로잉 마스터리
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/throwingmastery.bmp>) 쓰로잉 마스터리
 
 원거리 THAC0와 공격력이 1 추가된다.
 
 - 레벨: 4
 - 대상: 시전자
-- 선택 가능: 5회~
+- 선택 가능: 5회
 
-@241 = ~아이언 스킨~
-@242 = ~아이언 스킨
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/ironskin.bmp>) 아이언 스킨
 
 물리 저항이 8% 증가한다.
 
 - 레벨: 12
 - 대상: 시전자
 - 선택 가능: 5회
-- 선행 스킬: 무기 마스터리~
+- 선행 스킬: 무기 마스터리
 
-@251 = ~인크리즈 스피드~
-@252 = ~인크리즈 스피드
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/increasespeed.bmp>) 인크리즈 스피드
 
 이동 속도가 1 빨라진다.
 
 - 레벨: 16
 - 대상: 시전자
 - 선택 가능: 5회
-- 선행 스킬: 무기 마스터리~
+- 선행 스킬: 무기 마스터리
 
-@261 = ~내추럴 레지스턴스~
-@262 = ~내추럴 레지스턴스
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/naturalresistance.bmp>) 내추럴 레지스턴스
 
 원소 저항이 8% 증가한다.
 
 - 레벨: HLA
 - 대상: 시전자
 - 선택 가능: 5회
-- 선행 스킬: 아이언 스킨~
+- 선행 스킬: 아이언 스킨
 
-@311 = ~배쉬~
-@312 = ~배쉬
+------
+
+## ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/tab/CombatSkills.bmp>) 컴뱃 스킬:
+
+- 컴뱃 스킬은 1번씩 익힐 수 있는 스킬로써 선택시 일반 공격이 해당 스킬로 기간에 제한없이 변경되고 익힌 컴뱃 스킬간에는 언제든지 전환이 가능하다.
+- 마법 저항은 무시한다.
+
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/bash.bmp>) 배쉬
 
 근접 공격력이 상승하고 근접 공격에 맞은 적은 숨결 내성 굴림에 실패할 경우 약간 밀려난다.
 
@@ -207,10 +203,9 @@
   - 01레벨: 시전자의 THAC0 +1, 공격력 +2, 맞은 적이  0 내성 굴림 실패시 밀림
   - 04레벨: 시전자의 THAC0 +2, 공격력 +3, 맞은 적이 -1 내성 굴림 실패시 밀림
   - 08레벨: 시전자의 THAC0 +3, 공격력 +4, 맞은 적이 -2 내성 굴림 실패시 밀림
-  - 12레벨: 시전자의 THAC0 +4, 공격력 +5, 맞은 적이 -3 내성 굴림 실패시 밀림~
+  - 12레벨: 시전자의 THAC0 +4, 공격력 +5, 맞은 적이 -3 내성 굴림 실패시 밀림
 
-@321 = ~더블 스윙~
-@322 = ~더블 스윙
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/doubleswing.bmp>) 더블 스윙
 
 근접 공격력이 상승하고 공회가 1회 추가된다.
 
@@ -222,10 +217,9 @@
   - 04레벨: THAC0 +1
   - 08레벨: THAC0 +2
   - 12레벨: THAC0 +3
-  - 16레벨: THAC0 +4~
+  - 16레벨: THAC0 +4
 
-@331 = ~더블 쓰로우~
-@332 = ~더블 쓰로우
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/doublethrow.bmp>) 더블 쓰로우
 
 원거리 공격력이 상승하고 공회가 1회 추가된다.
 
@@ -237,10 +231,9 @@
   - 08레벨: THAC0 +2
   - 12레벨: THAC0 +4
   - 16레벨: THAC0 +6
-  - 20레벨: THAC0 +8~
+  - 20레벨: THAC0 +8
 
-@333 = ~스턴~
-@334 = ~스턴
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/stun.bmp>) 스턴
 
 근접 공격에 맞은 적은 숨결 내성 굴림에 실패할 경우 1라운드간 기절한다.
 
@@ -252,10 +245,9 @@
   - 08레벨: 시전자의 THAC0 +1, 맞은 적이 +1 내성 굴림 실패시 기절
   - 12레벨: 시전자의 THAC0 +2, 맞은 적이  0 내성 굴림 실패시 기절
   - 16레벨: 시전자의 THAC0 +3, 맞은 적이 -1 내성 굴림 실패시 기절
-  - 20레벨: 시전자의 THAC0 +4, 맞은 적이 -2 내성 굴림 실패시 기절~
+  - 20레벨: 시전자의 THAC0 +4, 맞은 적이 -2 내성 굴림 실패시 기절
 
-@341 = ~컨센트레이트~
-@342 = ~컨센트레이트
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/concentrate.bmp>) 컨센트레이트
 
 방어력과 근접 공격력이 상승한다.
 
@@ -267,10 +259,9 @@
   - 12레벨: 방어력 +2, THAC0 +2, 공격력 +2
   - 16레벨: 방어력 +2, THAC0 +4, 공격력 +3
   - 20레벨: 방어력 +3, THAC0 +6, 공격력 +4
-  - 24레벨: 방어력 +4, THAC0 +8, 공격력 +5~
+  - 24레벨: 방어력 +4, THAC0 +8, 공격력 +5
 
-@361 = ~프렌지~
-@362 = ~프렌지
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/frenzy.bmp>) 프렌지
 
 근접 공격력이 상승하고 공회가 1회 추가되고 이동속도가 빨라진다.
 
@@ -282,10 +273,9 @@
   - 20레벨: THAC0 +2, 공격력 +2, 이동 속도 +2
   - 24레벨: THAC0 +4, 공격력 +3, 이동 속도 +3
   - 28레벨: THAC0 +6, 공격력 +4, 이동 속도 +4
-  - 32레벨: THAC0 +8, 공격력 +5, 이동 속도 +5~
+  - 32레벨: THAC0 +8, 공격력 +5, 이동 속도 +5
 
-@363 = ~훨윈드~
-@364 = ~훨윈드
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/whirlwind.bmp>) 훨윈드
 
 근접 공격이 주변의 적까지 공격한다.
 
@@ -297,10 +287,9 @@
   - 20레벨: 시전자의 THAC0 +1, 주변의 적 피해 3-5
   - 24레벨: 시전자의 THAC0 +2, 주변의 적 피해 4-8
   - 28레벨: 시전자의 THAC0 +3, 주변의 적 피해 5-11
-  - 32레벨: 시전자의 THAC0 +4, 주변의 적 피해 6-14~
+  - 32레벨: 시전자의 THAC0 +4, 주변의 적 피해 6-14
 
-@365 = ~버서크~
-@366 = ~버서크
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/berserk.bmp>) 버서크
 
 근접 공격이 마법 공격으로 변환되나 방어력이 감소한다.
 
@@ -312,4 +301,4 @@
   - 20레벨: THAC0 +3,  공격력 -6,  마법 공격력 +10, 방어력 -10
   - 24레벨: THAC0 +6,  공격력 -9,  마법 공격력 +15, 방어력 -8
   - 28레벨: THAC0 +9,  공격력 -12, 마법 공격력 +20, 방어력 -6
-  - 32레벨: THAC0 +12, 공격력 -15, 마법 공격력 +25, 방어력 -4~
+  - 32레벨: THAC0 +12, 공격력 -15, 마법 공격력 +25, 방어력 -4
