@@ -30,7 +30,7 @@
 
 
 
-## 워크라이:
+## ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/warcries.bmp>)워크라이:
 
 * 워크라이의 모든 스킬은 일정 기간 동안 영향을 주는 스킬로 익히는 횟수에 한계가 없다.
 * 모든 효과는 누적이 불가능하다.
@@ -149,7 +149,7 @@
 
 
 
-## 컴뱃 마스터리:
+## ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/combatmasteries.bmp>)컴뱃 마스터리:
 
 * 컴뱃 마스터리의 모든 스킬은 패시브 스킬로 영구적으로 적용된다.
 * 무기 마스터리는 셋 중 하나만 익힐 수 있으며 하이 레벨 어빌리티에서 익힐 수 없고 스킬 포인트로만 익힐 수 있다.
@@ -219,7 +219,7 @@
 
 
 
-## 컴뱃 스킬:
+## ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/combatskills.bmp>)컴뱃 스킬:
 
 * 컴뱃 스킬은 1번씩 익힐 수 있는 스킬로써 선택시 일반 공격이 해당 스킬로 기간에 제한없이 변경되고 익힌 컴뱃 스킬간에는 언제든지 전환이 가능하다.
 * 마법 저항은 무시한다.
