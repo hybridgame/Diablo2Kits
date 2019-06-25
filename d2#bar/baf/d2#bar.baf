@@ -1,0 +1,249 @@
+// Combat Masteries
+
+IF
+    Global("B#ComM","LOCALS",1)
+    GlobalGT("B#ThrM","LOCALS",0)
+    GlobalLT("B#ThrM","LOCALS",5)
+    GlobalLT("B#IroS","LOCALS",5)
+    GlobalLT("B#Spee","LOCALS",5)
+    CheckStatGT(Myself,15,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCM8",Myself) // Increased Speed, Iron Skin, Throwing Mastery
+        SetGlobal("B#ComM","LOCALS",0)
+END
+
+IF
+    Global("B#ComM","LOCALS",1)
+    GlobalGT("B#ThrM","LOCALS",0)
+    GlobalLT("B#ThrM","LOCALS",5)
+    GlobalLT("B#Spee","LOCALS",5)
+    CheckStatGT(Myself,15,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCM7",Myself) // Increased Speed, Throwing Mastery
+        SetGlobal("B#ComM","LOCALS",0)
+END
+
+IF
+    Global("B#ComM","LOCALS",1)
+    OR(2)
+        !Global("B#THWS","LOCALS",0)
+        !Global("B#TWSM","LOCALS",0)
+    GlobalLT("B#IroS","LOCALS",5)
+    GlobalLT("B#Spee","LOCALS",5)
+    CheckStatGT(Myself,15,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCM6",Myself) // Increased Speed, Iron Skin
+        SetGlobal("B#ComM","LOCALS",0)
+END
+
+IF
+    Global("B#ComM","LOCALS",1)
+    OR(2)
+        !Global("B#THWS","LOCALS",0)
+        !Global("B#TWSM","LOCALS",0)
+    GlobalLT("B#Spee","LOCALS",5)
+    CheckStatGT(Myself,15,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCM5",Myself) // Increased Speed
+        SetGlobal("B#ComM","LOCALS",0)
+END
+
+IF
+    Global("B#ComM","LOCALS",1)
+    GlobalGT("B#ThrM","LOCALS",0)
+    GlobalLT("B#ThrM","LOCALS",5)
+    GlobalLT("B#IroS","LOCALS",5)
+    CheckStatGT(Myself,11,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCM4",Myself) // Iron Skin, Throwing Mastery
+        SetGlobal("B#ComM","LOCALS",0)
+END
+
+IF
+    Global("B#ComM","LOCALS",1)
+    OR(2)
+        !Global("B#THWS","LOCALS",0)
+        !Global("B#TWSM","LOCALS",0)
+    GlobalLT("B#IroS","LOCALS",5)
+    CheckStatGT(Myself,11,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCM3",Myself) // Iron Skin
+        SetGlobal("B#ComM","LOCALS",0)
+END
+
+IF
+    Global("B#ComM","LOCALS",1)
+    GlobalGT("B#ThrM","LOCALS",0)
+    GlobalLT("B#ThrM","LOCALS",5)
+    CheckStatGT(Myself,3,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCM2",Myself) // Throwing Mastery
+        SetGlobal("B#ComM","LOCALS",0)
+END
+
+IF
+    Global("B#ComM","LOCALS",1)
+    Global("B#THWS","LOCALS",0)
+    Global("B#TWSM","LOCALS",0)
+    Global("B#ThrM","LOCALS",0)
+    CheckStatGT(Myself,3,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCM1",Myself) // Two-handed Style Mastery, Two Weapon Style Mastery, Throwing Mastery
+        SetGlobal("B#ComM","LOCALS",0)
+END
+
+// Combat Skills
+
+IF
+    Global("B#ComS","LOCALS",1)
+    !Global("B#Stun","LOCALS",0)
+    !Global("B#DouT","LOCALS",0)
+    Global("B#Conc","LOCALS",0)
+    CheckStatGT(Myself,11,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCS9",Myself) // Concentration
+        SetGlobal("B#ComS","LOCALS",0)
+END
+
+IF
+    Global("B#ComS","LOCALS",1)
+    !Global("B#Stun","LOCALS",0)
+    Global("B#DouS","LOCALS",0)
+    Global("B#Conc","LOCALS",0)
+    CheckStatGT(Myself,11,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCS8",Myself) // Concentration, Double Swing
+        SetGlobal("B#ComS","LOCALS",0)
+END
+
+IF
+    Global("B#ComS","LOCALS",1)
+    !Global("B#Stun","LOCALS",0)
+    !Global("B#DouS","LOCALS",0)
+    Global("B#DouT","LOCALS",0)
+    Global("B#Conc","LOCALS",0)
+    CheckStatGT(Myself,11,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCS7",Myself) // Concentration, Double Throw
+        SetGlobal("B#ComS","LOCALS",0)
+END
+
+IF
+    Global("B#ComS","LOCALS",1)
+    !Global("B#DouT","LOCALS",0)
+    Global("B#Stun","LOCALS",0)
+    CheckStatGT(Myself,7,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCS6",Myself) // Stun
+        SetGlobal("B#ComS","LOCALS",0)
+END
+
+IF
+    Global("B#ComS","LOCALS",1)
+    !Global("B#DouS","LOCALS",0)
+    !Global("B#Stun","LOCALS",0)
+    Global("B#DouT","LOCALS",0)
+    CheckStatGT(Myself,7,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCS5",Myself) // Double Throw
+        SetGlobal("B#ComS","LOCALS",0)
+END
+
+IF
+    Global("B#ComS","LOCALS",1)
+    !Global("B#DouS","LOCALS",0)
+    Global("B#Stun","LOCALS",0)
+    Global("B#DouT","LOCALS",0)
+    CheckStatGT(Myself,7,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCS4",Myself) // Double Throw, Stun
+        SetGlobal("B#ComS","LOCALS",0)
+END
+
+IF
+    Global("B#ComS","LOCALS",1)
+    !Global("B#Bash","LOCALS",0)
+    Global("B#DouS","LOCALS",0)
+    Global("B#Stun","LOCALS",0)
+    CheckStatGT(Myself,7,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCS3",Myself) // Stun, Double Swing
+        SetGlobal("B#ComS","LOCALS",0)
+END
+
+IF
+    Global("B#ComS","LOCALS",1)
+    !Global("B#Bash","LOCALS",0)
+    Global("B#DouS","LOCALS",0)
+    CheckStatGT(Myself,3,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCS2",Myself) // Double Swing
+        SetGlobal("B#ComS","LOCALS",0)
+END
+
+IF
+    Global("B#ComS","LOCALS",1)
+    Global("B#Bash","LOCALS",0)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABCS1",Myself) // Bash
+        SetGlobal("B#ComS","LOCALS",0)
+END
+
+IF
+    OR(2)
+        Global("B#ComM","LOCALS",1)
+        Global("B#ComS","LOCALS",1)
+THEN
+    RESPONSE #100
+        SetGlobal("B#ComM","LOCALS",0)
+        SetGlobal("B#ComS","LOCALS",0)
+        SetGlobal("B#WarC","LOCALS",1)    
+        Continue()
+END
+
+// Warcries
+
+IF
+    Global("B#WarC","LOCALS",1)
+    !Global("B#Taun","LOCALS",0)
+    CheckStatGT(Myself,11,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABWC3",Myself) // Battle Cry, Shout, Taunt, Howl
+        SetGlobal("B#WarC","LOCALS",0)
+END
+
+IF
+    Global("B#WarC","LOCALS",1)
+    !Global("B#Howl","LOCALS",0)
+    CheckStatGT(Myself,3,LEVEL)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABWC2",Myself) // Shout, Taunt, Howl
+        SetGlobal("B#WarC","LOCALS",0)
+END
+
+IF
+    Global("B#WarC","LOCALS",1)
+THEN
+	RESPONSE #100
+        ForceSpellRES("B#TABWC1",Myself) // Howl
+        SetGlobal("B#WarC","LOCALS",0)
+END

@@ -1,0 +1,156 @@
+// Add kit
+ADD_KIT ~d2pal~
+    // CLASWEAP.2DA : BG1 proficiencies. (deprecated)
+    ~d2pal   1 1 1 1 1 1 1 1~
+    
+    // WEAPPROF.2DA : BG2 proficiencies
+    ~d2pal   2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+    
+    // ABCLASRQ.2DA : Minimum stats at character creation
+    ~d2pal   16 14 16 11 13 17~
+    
+    // ABCLSMOD.2DA : Stat modifiers at character creation
+    ~d2pal   0 0 0 0 0 0~
+    
+    // ABDCDSRQ.2DA : Stats requirement to dual-class
+    ~d2pal   0 17 0 0 0 0~
+    
+    // ABDCSCRQ.2DA : Stats requirement to dual-class
+    ~d2pal   0 0 0 17 0 0~
+    
+    //       LG LN LE NG TN NE CG CN CE ALIGNMNT.2DA : Selectable alignment
+    ~d2pal   1  0  0  0  0  0  0  0  0~
+    
+    //       F C M T D R DUALCLAS.2DA : Dual possible classes
+    ~d2pal   0 0 0 0 0 0~
+    
+    // Kit's own clab*.2da
+    ~Diablo2Kits/d2pal/2da/d2pal.2da~
+    
+    // KITTABLE.2DA : Selectable race
+    ~K_P_H~
+    
+    // KITLIST.2DA : Kit's usability flag
+    ~0x00000010 6~
+    
+    // High level abilities. prefix lu file required
+    ~d2pal~
+    
+    // 25stweap.2da : TOB starting items
+    ~* * * * * * * * * * * * * * * * * * * *~
+    
+    // Lowercase name
+    SAY @2002
+    
+    // First uppercase name
+    SAY @2002
+    
+    // Description
+    SAY @2003
+
+// Kit detail
+LAF fl#add_kit_ee
+    STR_VAR
+        kit_name = ~d2pal~
+        hpclass = ~HPWAR~
+END
+
+COPY  ~Diablo2Kits/d2pal/2da/lud2pal.2da~ ~override~
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// BAM
+COPY  ~Diablo2Kits/d2pal/bam~ ~override~
+
+// Sound
+COPY  ~Diablo2Kits/d2pal/snd~ ~override~
+
+// Effect
+COPY  ~Diablo2Kits/d2pal/eff~ ~override~
+
+// Potrait icons
+COPY_EXISTING ~statdesc.2da~ ~override~
+INSERT_2DA_ROW 1 3    ~241         @2301       D2PAL1R~
+INSERT_2DA_ROW 1 3    ~242         @2302       D2PAL2R~
+INSERT_2DA_ROW 1 3    ~243         @2303       D2PAL3R~
+INSERT_2DA_ROW 1 3    ~244         @2304       D2PAL4R~
+INSERT_2DA_ROW 1 3    ~245         @2305       D2PAL5R~
+INSERT_2DA_ROW 1 3    ~246         @2306       D2PAL6R~
+INSERT_2DA_ROW 1 3    ~247         @2307       D2PAL7R~
+INSERT_2DA_ROW 1 3    ~248         @2308       D2PAL8R~
+INSERT_2DA_ROW 1 3    ~249         @2309       D2PAL9R~
+REPLACE "@2301" @2301
+REPLACE "@2302" @2302
+REPLACE "@2303" @2303
+REPLACE "@2304" @2304
+REPLACE "@2305" @2305
+REPLACE "@2306" @2306
+REPLACE "@2307" @2307
+REPLACE "@2308" @2308
+REPLACE "@2309" @2309
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Animation
+COPY ~Diablo2Kits/d2pal/ani~ ~override~
+
+APPEND ~animate.ids~    ~0x6107 FIGHTER_MALE_PALADIN~ UNLESS ~^0x6107~
+APPEND ~anisnd.ids~     ~0x6107 CHMP     CGAMEANIMATIONTYPE_FIGHTER_MALE_PALADIN~ UNLESS ~^0x6107~
+
+////////////////////////////////////////////////////////////////////////////////
+
+// Change script
+COMPILE ~Diablo2Kits/d2pal/baf~
+COPY  ~Diablo2Kits/d2pal/spl/d2pal0.spl~ ~override~
+
+// Might
+COPY  ~Diablo2Kits/d2pal/spl/d2pal1.spl~ ~override~
+SAY NAME1 @2301
+SAY UNIDENTIFIED_DESC @2301
+
+// Concentration
+COPY  ~Diablo2Kits/d2pal/spl/d2pal2.spl~ ~override~
+SAY NAME1 @2302
+SAY UNIDENTIFIED_DESC @2302
+
+// Resist fire
+COPY  ~Diablo2Kits/d2pal/spl/d2pal3.spl~ ~override~
+SAY NAME1 @2303
+SAY UNIDENTIFIED_DESC @2303
+
+// Resist cold
+COPY  ~Diablo2Kits/d2pal/spl/d2pal4.spl~ ~override~
+SAY NAME1 @2304
+SAY UNIDENTIFIED_DESC @2304
+
+// Resist lightning
+COPY  ~Diablo2Kits/d2pal/spl/d2pal5.spl~ ~override~
+SAY NAME1 @2305
+SAY UNIDENTIFIED_DESC @2305
+
+// Zeal
+COPY  ~Diablo2Kits/d2pal/spl/d2pal6.spl~ ~override~
+SAY NAME1 @2306
+SAY UNIDENTIFIED_DESC @2306
+COPY  ~Diablo2Kits/d2pal/spl/d2pal6a.spl~ ~override~
+
+// Vengeance
+COPY  ~Diablo2Kits/d2pal/spl/d2pal7.spl~ ~override~
+SAY NAME1 @2307
+SAY UNIDENTIFIED_DESC @2307
+COPY  ~Diablo2Kits/d2pal/spl/d2pal7a.spl~ ~override~
+
+// Fanaticism
+COPY  ~Diablo2Kits/d2pal/spl/d2pal8.spl~ ~override~
+SAY NAME1 @2308
+SAY UNIDENTIFIED_DESC @2318
+
+// Salvation
+COPY  ~Diablo2Kits/d2pal/spl/d2pal9.spl~ ~override~
+SAY NAME1 @2309
+SAY UNIDENTIFIED_DESC @2319
+
+// Holy shield
+COPY  ~Diablo2Kits/d2pal/spl/d2pal10.spl~ ~override~
+SAY NAME1 @2310
+SAY UNIDENTIFIED_DESC @2320

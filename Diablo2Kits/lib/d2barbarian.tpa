@@ -1,0 +1,173 @@
+// Add kit.
+ADD_KIT ~d2bar~
+    // CLASWEAP.2DA : BG1 proficiencies. (deprecated)
+    ~d2bar   1 1 1 1 1 1 1 1~
+    
+    // WEAPPROF.2DA : BG2 proficiencies
+    ~d2bar   5 5 0 5 5 5 5 0 5 5 5 5 5 5 5 0 5 5 5 5 5 5 0 0 0 0 0 0 2 2 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  
+    // ABCLASRQ.2DA : Minimum stats at character creation
+    ~d2bar   17 14 14 11 11 11~
+    
+    // ABCLSMOD.2DA : Stat modifiers at character creation
+    ~d2bar   1 0 1 -1 -1 0~
+    
+    // ABDCDSRQ.2DA : Stats requirement to dual-class
+    ~d2bar   0 17 0 0 0 0~
+    
+    // ABDCSCRQ.2DA : Stats requirement to dual-class
+    ~d2bar   0 0 0 17 0 0~
+    
+    //       LG LN LE NG TN NE CG CN CE ALIGNMNT.2DA : Selectable alignment
+    ~d2bar   1  1  1  1  1  1  1  1  1~
+    
+    //       F C M T D R DUALCLAS.2DA : Dual possible classes
+    ~d2bar   0 0 0 0 0 0~
+    
+    // Kit's own clab*.2da
+    ~Diablo2Kits/d2bar/2da/d2bar.2da~
+    
+    // KITTABLE.2DA : Selectable race
+    ~K_F_H~
+    
+    // KITLIST.2DA : Kit's usability flag
+    ~0x00000001 2~
+    
+    // High level abilities. prefix lu file required
+    ~d2bar~
+    
+    // 25stweap.2da : TOB starting items
+    ~* * * * * * * * * * * * * * * * * * * *~
+    
+    // Lowercase name
+    SAY @102
+    
+    // First uppercase name
+    SAY @102
+    
+    // Description
+    SAY @103
+
+// Kit detail.
+LAF fl#add_kit_ee
+    STR_VAR
+        kit_name = ~d2bar~
+        hpclass = ~HPBARB~
+END
+
+COPY ~Diablo2Kits/d2bar/2da/lud2bar.2da~ ~override~
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Projectile
+ADD_PROJECTILE ~Diablo2Kits/d2bar/pro/D2BABP1.pro~
+
+// BAM
+COPY ~Diablo2Kits/d2bar/bam~ ~override~
+
+// Sound
+COPY ~Diablo2Kits/d2bar/snd~ ~override~
+
+// Effect
+COPY ~Diablo2Kits/d2bar/eff~ ~override~
+
+// Potrait icons
+COPY_EXISTING ~statdesc.2da~ ~override~
+INSERT_2DA_ROW 1 3    ~222         @302      D2BAB2R~
+INSERT_2DA_ROW 1 3    ~223         @303      D2BAB3R~
+INSERT_2DA_ROW 1 3    ~224         @304      D2BAB4R~
+INSERT_2DA_ROW 1 3    ~228         @308      D2BAB8R~
+INSERT_2DA_ROW 1 3    ~229         @309      D2BAB9R~
+INSERT_2DA_ROW 1 3    ~230         @310      D2BAB10R~
+INSERT_2DA_ROW 1 3    ~231         @311      D2BAB11R~
+INSERT_2DA_ROW 1 3    ~232         @312      D2BAB12R~
+REPLACE "@302" @302
+REPLACE "@303" @303
+REPLACE "@304" @304
+REPLACE "@308" @308
+REPLACE "@309" @309
+REPLACE "@310" @310
+REPLACE "@311" @311
+REPLACE "@312" @312
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Animation
+COPY ~Diablo2Kits/d2bar/ani~ ~override~
+
+APPEND ~animate.ids~    ~0x6106 FIGHTER_MALE_BARBARIAN~ UNLESS ~^0x6106~
+APPEND ~anisnd.ids~     ~0x6106 CHMD     CGAMEANIMATIONTYPE_FIGHTER_MALE_BARBARIAN~ UNLESS ~^0x6106~
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Change script
+COMPILE ~Diablo2Kits/d2bar/baf~
+COPY ~Diablo2Kits/d2bar/spl/d2bab0.spl~ ~override~
+
+// Howl
+COPY ~Diablo2Kits/d2bar/spl/d2bab1.spl~ ~override~
+SAY NAME1 @301
+SAY UNIDENTIFIED_DESC @321
+
+// Shout
+COPY ~Diablo2Kits/d2bar/spl/d2bab2.spl~ ~override~
+SAY NAME1 @302
+SAY UNIDENTIFIED_DESC @322
+
+// Battle Order
+COPY ~Diablo2Kits/d2bar/spl/d2bab3.spl~ ~override~
+SAY NAME1 @303
+SAY UNIDENTIFIED_DESC @323
+
+// Battle Command
+COPY ~Diablo2Kits/d2bar/spl/d2bab4.spl~ ~override~
+SAY NAME1 @304
+SAY UNIDENTIFIED_DESC @324
+
+// Increased Speed
+COPY ~Diablo2Kits/d2bar/spl/d2bab5.spl~ ~override~
+SAY NAME1 @305
+
+// Iron Skin
+COPY ~Diablo2Kits/d2bar/spl/d2bab6.spl~ ~override~
+SAY NAME1 @306
+SAY UNIDENTIFIED_DESC @326
+
+// Natural Resistance
+COPY ~Diablo2Kits/d2bar/spl/d2bab7.spl~ ~override~
+SAY NAME1 @307
+SAY UNIDENTIFIED_DESC @327
+
+// Bash
+COPY ~Diablo2Kits/d2bar/spl/d2bab8.spl~ ~override~
+SAY NAME1 @308
+COPY ~Diablo2Kits/d2bar/spl/d2bab8a.spl~ ~override~
+
+// Stun
+COPY ~Diablo2Kits/d2bar/spl/d2bab9.spl~ ~override~
+SAY NAME1 @309
+COPY ~Diablo2Kits/d2bar/spl/d2bab9a.spl~ ~override~
+
+// Concentration
+COPY ~Diablo2Kits/d2bar/spl/d2bab10.spl~ ~override~
+SAY NAME1 @310
+COPY ~Diablo2Kits/d2bar/spl/d2bab10a.spl~ ~override~
+
+// Berserk
+COPY ~Diablo2Kits/d2bar/spl/d2bab11.spl~ ~override~
+SAY NAME1 @311
+SAY UNIDENTIFIED_DESC @331
+COPY ~Diablo2Kits/d2bar/spl/d2bab11a.spl~ ~override~
+
+// Whirlwind
+COPY ~Diablo2Kits/d2bar/spl/d2bab12.spl~ ~override~
+SAY NAME1 @312
+SAY UNIDENTIFIED_DESC @332
+COPY ~Diablo2Kits/d2bar/spl/d2bab12a.spl~ ~override~
+WRITE_SHORT   0x98 ~%D2BABP1%~
+COPY ~Diablo2Kits/d2bar/spl/d2bab12b.spl~ ~override~
+WRITE_SHORT   0x98 ~%D2BABP1%~
+COPY ~Diablo2Kits/d2bar/spl/d2bab12c.spl~ ~override~
+WRITE_SHORT   0x98 ~%D2BABP1%~
+COPY ~Diablo2Kits/d2bar/spl/d2bab12d.spl~ ~override~
+WRITE_SHORT   0x98 ~%D2BABP1%~

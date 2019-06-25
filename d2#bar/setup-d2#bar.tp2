@@ -1,0 +1,359 @@
+BACKUP ~d2#bar/backup~
+AUTHOR ~HybridGame~
+VERSION "1.0.20190624"
+
+ALWAYS
+    INCLUDE "d2#bar/lib/fl#add_kit_ee.tpa"
+END
+
+LANGUAGE    ~Korean~
+            ~Korean~
+            ~d2#bar/Language/setupko.tra~
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// D2 Barbarian
+
+BEGIN ~D2 Barbarian kit for Fighter~
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee~ @1
+
+// Add kit.
+ADD_KIT ~d2#bar~
+    // CLASWEAP.2DA : BG1 proficiencies. (deprecated)
+    ~d2#bar   1 1 1 1 1 1 1 1~
+    
+    // WEAPPROF.2DA : BG2 proficiencies
+    //11                                T   S           F   Q             S S
+    //10                                W   C           L   U             W I
+    //9                         B L S   O   I   W       A   A             O N
+    //8                         A O H   H   M   A       I   R C   S       R G
+    //7         L S           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+    //6         _ _       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+    //5         S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+    //4         W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+    //3         O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+    //2        	R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+    //1      	D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+    ~d2#bar     5 5 0 5 5 5 5 0 5 5 5 5 5 5 5 5 5 5 5 5 5 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+  
+    // ABCLASRQ.2DA : Minimum stats at character creation
+    ~d2#bar   17 14 17 10 10 10~
+    
+    // ABCLSMOD.2DA : Stat modifiers at character creation
+    ~d2#bar   1 0 1 -1 -1 0~
+    
+    // ABDCDSRQ.2DA : Stats requirement to dual-class
+    ~d2#bar   0 17 0 0 0 0~
+    
+    // ABDCSCRQ.2DA : Stats requirement to dual-class
+    ~d2#bar   0 0 0 17 0 0~
+    
+    //        LG LN LE NG TN NE CG CN CE ALIGNMNT.2DA : Selectable alignment
+    ~d2#bar   1  1  1  1  1  1  1  1  1~
+    
+    //        F C M T D R DUALCLAS.2DA : Dual possible classes
+    ~d2#bar   0 0 0 0 0 0~
+    
+    // Kit's own clab*.2da
+    ~d2#bar/d2#bar.2da~
+    
+    // KITTABLE.2DA : Selectable race
+    ~K_F_H    K_F_D   K_F_G   K_F_E   K_F_HE   K_F_HL   K_F_HO~
+    
+    // KITLIST.2DA : Kit's usability flag
+    ~0x00000001 2~
+    
+    // High level abilities. prefix lu file required
+    ~d2#bar~
+    
+    // 25stweap.2da : TOB starting items
+    ~* * * * * * * * * * * * * * * * * * * *~
+    
+    // Lowercase name
+    SAY @11
+    
+    // First uppercase name
+    SAY @12
+    
+    // Description
+    SAY @13
+
+// Kit detail.
+LAF fl#add_kit_ee
+    STR_VAR
+        kit_name = ~d2#bar~
+        hpclass = ~HPBARB~
+END
+
+COPY ~d2#bar/2da~   ~override~
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Projectile
+ADD_PROJECTILE ~d2#bar/pro/b#6whil.pro~
+
+// BAM
+COPY ~d2#bar/bam~ ~override~
+
+// Sound
+COPY ~d2#bar/snd~ ~override~
+
+// Effect
+COPY ~d2#bar/eff~ ~override~
+
+// Potrait icons
+COPY_EXISTING ~statdesc.2da~ ~override~
+INSERT_2DA_ROW 1 3    ~901         @111      B#1HOWLR~
+INSERT_2DA_ROW 1 3    ~902         @121      B#2SHOUR~
+INSERT_2DA_ROW 1 3    ~903         @123      B#2TAUNR~
+INSERT_2DA_ROW 1 3    ~904         @141      B#4BATCR~
+INSERT_2DA_ROW 1 3    ~905         @161      B#5ORDER~
+INSERT_2DA_ROW 1 3    ~906         @163      B#6WARCR~
+INSERT_2DA_ROW 1 3    ~907         @165      B#6COMMR~
+INSERT_2DA_ROW 1 3    ~908         @311      B#1BASHR~
+INSERT_2DA_ROW 1 3    ~909         @321      B#2DOUSR~
+INSERT_2DA_ROW 1 3    ~910         @331      B#3DOUTR~
+INSERT_2DA_ROW 1 3    ~911         @333      B#3STUNR~
+INSERT_2DA_ROW 1 3    ~912         @341      B#4CONCR~
+INSERT_2DA_ROW 1 3    ~913         @361      B#5FRENR~
+INSERT_2DA_ROW 1 3    ~914         @363      B#6WHILR~
+INSERT_2DA_ROW 1 3    ~915         @365      B#6BERSR~
+REPLACE "@111" @111
+REPLACE "@121" @121
+REPLACE "@123" @123
+REPLACE "@141" @141
+REPLACE "@161" @161
+REPLACE "@163" @163
+REPLACE "@165" @165
+REPLACE "@311" @311
+REPLACE "@321" @321
+REPLACE "@331" @331
+REPLACE "@333" @333
+REPLACE "@341" @341
+REPLACE "@361" @361
+REPLACE "@363" @363
+REPLACE "@365" @365
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+COMPILE ~d2#bar/baf~
+
+COPY ~d2#bar/spl/select~ ~override~
+
+COPY ~d2#bar/spl/d2#bar.spl~  ~override~ // Change script
+
+COPY ~d2#bar/spl/b#tabwc.spl~ ~override~
+SAY NAME1 @102
+
+COPY ~d2#bar/spl/b#tabcm.spl~ ~override~
+SAY NAME1 @103
+
+COPY ~d2#bar/spl/b#tabcs.spl~ ~override~
+SAY NAME1 @104
+
+COPY ~d2#bar/spl/b#ski01.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski02.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski03.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski04.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski05.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski06.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski07.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski08.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski09.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski10.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski11.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski12.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski13.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski14.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski15.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski16.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski17.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski18.spl~ ~override~
+SAY NAME1 @110
+
+COPY ~d2#bar/spl/b#ski19.spl~ ~override~
+SAY NAME1 @110
+
+///////////////////
+// Warcries
+
+// Howl
+COPY ~d2#bar/spl/b#1Howl.spl~ ~override~
+SAY NAME1 @111
+SAY UNIDENTIFIED_DESC @112
+COPY ~d2#bar/spl/b#1Howl3.spl~ ~override~
+SAY NAME1 @111
+
+// Shout
+COPY ~d2#bar/spl/b#2Shou.spl~ ~override~
+SAY NAME1 @121
+SAY UNIDENTIFIED_DESC @122
+COPY ~d2#bar/spl/b#2Shou3.spl~ ~override~
+SAY NAME1 @121
+
+// Taunt
+COPY ~d2#bar/spl/b#2Taun.spl~ ~override~
+SAY NAME1 @123
+SAY UNIDENTIFIED_DESC @124
+COPY ~d2#bar/spl/b#2Taun3.spl~ ~override~
+SAY NAME1 @123
+
+// Battle Cry
+COPY ~d2#bar/spl/b#4BatC.spl~ ~override~
+SAY NAME1 @141
+SAY UNIDENTIFIED_DESC @142
+COPY ~d2#bar/spl/b#4BatC3.spl~ ~override~
+SAY NAME1 @141
+
+// Battle Order
+COPY ~d2#bar/spl/b#5Orde.spl~ ~override~
+SAY NAME1 @161
+SAY UNIDENTIFIED_DESC @162
+
+// War Cry
+COPY ~d2#bar/spl/b#6WarC.spl~ ~override~
+SAY NAME1 @163
+SAY UNIDENTIFIED_DESC @164
+
+// Battle Command
+COPY ~d2#bar/spl/b#6Comm.spl~ ~override~
+SAY NAME1 @165
+SAY UNIDENTIFIED_DESC @166
+
+///////////////////
+// Combat Masteries
+
+// Two Weapon Style Mastery
+COPY ~d2#bar/spl/b#2TWSM.spl~ ~override~
+SAY NAME1 @221
+SAY UNIDENTIFIED_DESC @222
+COPY ~d2#bar/spl/b#2TWSM3.spl~ ~override~
+SAY NAME1 @221
+
+// Two Handed Weapon Style Mastery
+COPY ~d2#bar/spl/b#2THWS.spl~ ~override~
+SAY NAME1 @223
+SAY UNIDENTIFIED_DESC @224
+COPY ~d2#bar/spl/b#2THWS3.spl~ ~override~
+SAY NAME1 @223
+
+// Throwing Mastery
+COPY ~d2#bar/spl/b#2ThrM.spl~ ~override~
+SAY NAME1 @225
+SAY UNIDENTIFIED_DESC @226
+COPY ~d2#bar/spl/b#2ThrM3.spl~ ~override~
+SAY NAME1 @225
+
+// Iron Skin
+COPY ~d2#bar/spl/b#4IroS.spl~ ~override~
+SAY NAME1 @241
+SAY UNIDENTIFIED_DESC @242
+COPY ~d2#bar/spl/b#4IroS3.spl~ ~override~
+SAY NAME1 @241
+
+// Increased Speed
+COPY ~d2#bar/spl/b#5Spee.spl~ ~override~
+SAY NAME1 @251
+SAY UNIDENTIFIED_DESC @252
+COPY ~d2#bar/spl/b#5Spee3.spl~ ~override~
+SAY NAME1 @251
+
+// Natural Resistance
+COPY ~d2#bar/spl/b#6Resi.spl~ ~override~
+SAY NAME1 @261
+SAY UNIDENTIFIED_DESC @262
+
+///////////////////
+// Combat Skills
+
+// Bash
+COPY ~d2#bar/spl/b#1Bash.spl~ ~override~
+SAY NAME1 @311
+SAY UNIDENTIFIED_DESC @312
+COPY ~d2#bar/spl/b#1Bash2.spl~ ~override~
+COPY ~d2#bar/spl/b#1Bash3.spl~ ~override~
+SAY NAME1 @311
+
+// Double Swing
+COPY ~d2#bar/spl/b#2DouS.spl~ ~override~
+SAY NAME1 @321
+SAY UNIDENTIFIED_DESC @322
+COPY ~d2#bar/spl/b#2DouS3.spl~ ~override~
+SAY NAME1 @321
+
+// Double Throw
+COPY ~d2#bar/spl/b#3DouT.spl~ ~override~
+SAY NAME1 @331
+SAY UNIDENTIFIED_DESC @332
+COPY ~d2#bar/spl/b#3DouT3.spl~ ~override~
+SAY NAME1 @331
+
+// Stun
+COPY ~d2#bar/spl/b#3Stun.spl~ ~override~
+SAY NAME1 @333
+SAY UNIDENTIFIED_DESC @334
+COPY ~d2#bar/spl/b#3Stun2.spl~ ~override~
+COPY ~d2#bar/spl/b#3Stun3.spl~ ~override~
+SAY NAME1 @333
+
+// Concentration
+COPY ~d2#bar/spl/b#4Conc.spl~ ~override~
+SAY NAME1 @341
+SAY UNIDENTIFIED_DESC @342
+COPY ~d2#bar/spl/b#4Conc2.spl~ ~override~
+COPY ~d2#bar/spl/b#4Conc3.spl~ ~override~
+SAY NAME1 @341
+
+// Frenzy
+COPY ~d2#bar/spl/b#5Fren.spl~ ~override~
+SAY NAME1 @361
+SAY UNIDENTIFIED_DESC @362
+
+// Whirlwind
+COPY ~d2#bar/spl/b#6Whil.spl~ ~override~
+SAY NAME1 @363
+SAY UNIDENTIFIED_DESC @364
+COPY ~d2#bar/spl/b#6Whil2.spl~ ~override~
+WRITE_SHORT   0x98  ~%b#6whil%~
+WRITE_SHORT   0xc0  ~%b#6whil%~
+WRITE_SHORT   0xe8  ~%b#6whil%~
+WRITE_SHORT   0x110 ~%b#6whil%~
+
+// Berserk
+COPY ~d2#bar/spl/b#6Bers.spl~ ~override~
+SAY NAME1 @365
+SAY UNIDENTIFIED_DESC @366
+COPY ~d2#bar/spl/b#6Bers2.spl~ ~override~

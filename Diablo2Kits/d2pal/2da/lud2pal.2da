@@ -2,10 +2,10 @@
 *
            ABILITY     ICON       STRREF     MIN_LEV    MAX_LEVEL  NUM_ALLOWED PREREQUISITE EXCLUDED_BY ALIGNMENT_RESTRICT 
 1          GA_SPCL907  *          *          1          99         20         *          *          *          
-2          AP_D2PALA7  *          *          1          99         4          *          *          *          
-3          GA_D2PALA4A *          *          1          99         1          *          *          *          
-4          GA_D2PALA5A *          *          1          99         1          *          *          *          
-5          GA_D2PALA6A *          *          1          99         1          *          *          *          
+2          AP_D2PAL10  *          *          1          99         4          *          *          *          
+3          GA_D2PAL8   *          *          1          99         1          *          *          *          
+4          GA_D2PAL9   *          *          1          99         1          *          *          *          
+5          *           *          *          *          *          *          *          *          *          
 6          *           *          *          *          *          *          *          *          *          
 7          *           *          *          *          *          *          *          *          *          
 8          *           *          *          *          *          *          *          *          *          
