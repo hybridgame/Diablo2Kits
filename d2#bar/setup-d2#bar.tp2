@@ -1,6 +1,6 @@
 BACKUP ~d2#bar/backup~
 AUTHOR ~HybridGame~
-VERSION "1.0.20190624"
+VERSION "0.9.20190625"
 
 ALWAYS
     INCLUDE "d2#bar/lib/fl#add_kit_ee.tpa"
