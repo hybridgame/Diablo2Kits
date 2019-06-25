@@ -30,7 +30,7 @@
 
 
 
-## ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/warcries.bmp>)워크라이:
+## ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/Warcries.bmp>) 워크라이:
 
 * 워크라이의 모든 스킬은 일정 기간 동안 영향을 주는 스킬로 익히는 횟수에 한계가 없다.
 * 모든 효과는 누적이 불가능하다.
@@ -38,7 +38,7 @@
 
 
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/howl.bmp>)하울
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/howl.bmp>) 하울
 
 주변의 적이 주문 내성 굴림에 실패시 공포 상태가 된다.
 
@@ -53,7 +53,7 @@
 
 
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/shout.bmp>)샤우트
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/shout.bmp>) 샤우트
 
 주변 아군의 방어력을 상승시킨다.
 
@@ -69,7 +69,7 @@
 
 
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/taunt.bmp>)타운트
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/taunt.bmp>) 타운트
 
 선택한 대상의 내성 굴림을 무시하고 공격력을 하락시킨다.
 
@@ -85,7 +85,7 @@
 
 
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/battlecry.bmp>)배틀 크라이
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/battlecry.bmp>) 배틀 크라이
 
 주변의 적이 주문 내성 굴림에 실패시 공포 상태가 되고 방어력과 공격력이 하락한다.
 
@@ -101,7 +101,7 @@
 
 
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/battleorders.bmp>)배틀 오더
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/battleorders.bmp>) 배틀 오더
 
 주변 아군의 생명력을 상승시킨다.
 
@@ -117,7 +117,7 @@
 
 
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/warcry.bmp>)워 크라이
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/warcry.bmp>) 워 크라이
 
 주변 적의 마법 저항과 내성 굴림을 무시하고 기절시키고 마법 피해를 준다.
 
@@ -133,7 +133,7 @@
 
 
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/battlecommand.bmp>)배틀 코맨드
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/battlecommand.bmp>) 배틀 코맨드
 
 주변 아군의 스킬을 상승시킨다. (방어력,내성굴림,THAC0,피해,시전시간,무기속도 +1)
 
@@ -149,14 +149,14 @@
 
 
 
-## ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/combatmasteries.bmp>)컴뱃 마스터리:
+## ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/CombatMasteries.bmp>) 컴뱃 마스터리:
 
 * 컴뱃 마스터리의 모든 스킬은 패시브 스킬로 영구적으로 적용된다.
 * 무기 마스터리는 셋 중 하나만 익힐 수 있으며 하이 레벨 어빌리티에서 익힐 수 없고 스킬 포인트로만 익힐 수 있다.
 
 
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/swordmastery.bmp>)쌍수 무기 스타일 마스터리
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/swordmastery.bmp>) 쌍수 무기 스타일 마스터리
 
 쌍수 무기 스타일을 마스터(3슬롯)한다.
 
@@ -166,7 +166,7 @@
 
 
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/polearmmastery.bmp>)양손 무기 스타일 마스터리
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/polearmmastery.bmp>) 양손 무기 스타일 마스터리
 
 양손 무기 스타일을 마스터(2슬롯)한다.
 
@@ -176,7 +176,7 @@
 
 
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/throwingmastery.bmp>)쓰로잉 마스터리
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/throwingmastery.bmp>) 쓰로잉 마스터리
 
 원거리 THAC0와 피해가 1 추가된다.
 
@@ -186,7 +186,7 @@
 
 
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/ironskin.bmp>)아이언 스킨
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/ironskin.bmp>) 아이언 스킨
 
 물리 저항이 8% 증가한다.
 
@@ -197,7 +197,7 @@
 
 
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/increasespeed.bmp>)인크리즈 스피드
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/increasespeed.bmp>) 인크리즈 스피드
 
 이동 속도가 1 빨라진다.
 
@@ -208,7 +208,7 @@
 
 
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/naturalresistance.bmp>)내추럴 레지스턴스
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/naturalresistance.bmp>) 내추럴 레지스턴스
 
 원소 저항이 8% 증가한다.
 
@@ -219,14 +219,14 @@
 
 
 
-## ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/combatskills.bmp>)컴뱃 스킬:
+## ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/CombatSkills.bmp>) 컴뱃 스킬:
 
 * 컴뱃 스킬은 1번씩 익힐 수 있는 스킬로써 선택시 일반 공격이 해당 스킬로 기간에 제한없이 변경되고 익힌 컴뱃 스킬간에는 언제든지 전환이 가능하다.
 * 마법 저항은 무시한다.
 
 
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/bash.bmp>)배쉬
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/bash.bmp>) 배쉬
 
 근접 공격에 맞은 적은 숨결 내성 굴림에 실패할 경우 약간 밀려난다.
 
@@ -245,7 +245,7 @@
 
   
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/doubleswing.bmp>)더블 스윙
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/doubleswing.bmp>) 더블 스윙
 
 근접 공격력이 상승하고 공회가 1회 추가된다.
 
@@ -266,7 +266,7 @@
 
   
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/doublethrow.bmp>)더블 쓰로우
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/doublethrow.bmp>) 더블 쓰로우
 
 원거리 공격력이 상승하고 공회가 1회 추가된다.
 
@@ -287,7 +287,7 @@
 
   
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/stun.bmp>)스턴
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/stun.bmp>) 스턴
 
 근접 공격에 맞은 적은 숨결 내성 굴림에 실패할 경우 1라운드간 기절한다.
 
@@ -311,7 +311,7 @@
 
     
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/concentrate.bmp>)컨센트레이트
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/concentrate.bmp>) 컨센트레이트
 
 방어력과 근접 공격력이 상승한다.
 
@@ -332,7 +332,7 @@
 
   
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/frenzy.bmp>)프렌지
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/frenzy.bmp>) 프렌지
 
 직접 공격력이 상승하고 공회가 1회 추가되고 이동속도가 빨라진다.
 
@@ -353,7 +353,7 @@
 
   
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/whirlwind.bmp>)훨윈드
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/whirlwind.bmp>) 훨윈드
 
 근접 공격이 주변의 적까지 공격한다.
 
@@ -374,7 +374,7 @@
 
   
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/berserk.bmp>)버서크
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/source/berserk.bmp>) 버서크
 
 근접 공격 피해가 마법 피해로 변환되나 방어력이 감소한다.
 
