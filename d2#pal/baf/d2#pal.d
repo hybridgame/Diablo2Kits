@@ -92,7 +92,7 @@ IF ~NumTimesTalkedTo(0)~ THEN BEGIN selectSkill
         DO ~ActionOverride(Lastsummonerof(Myself),IncrementGlobal("D2#1227","GLOBAL",1))
             ApplySpellRES("D2#1227L",Lastsummonerof(Myself))~ EXIT
 
-    // Blessed Hammer
+    // Holy Shield
     IF ~GlobalGT("D2#1227","GLOBAL",0) LevelGT(Lastsummonerof(Myself),14)~ THEN REPLY @1229
         DO ~ActionOverride(Lastsummonerof(Myself),IncrementGlobal("D2#1229","GLOBAL",1))
             ApplySpellRES("D2#1229L",Lastsummonerof(Myself))~ EXIT
