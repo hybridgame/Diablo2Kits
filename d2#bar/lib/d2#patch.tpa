@@ -1,0 +1,71 @@
+DEFINE_PATCH_FUNCTION d2#patch_basic_info
+BEGIN
+    WRITE_LONG   NAME1      d2Name
+    WRITE_LONG   SPL_DESC   d2Desc
+    WRITE_ASCIIE SPL_ICON   ~%d2Skill%~ #8
+END
+
+DEFINE_PATCH_FUNCTION d2#patch_tab INT_VAR d2Tab = 0 target = TAB_TARGET_CREATURE projectile = 0 RET d2SkillLevel
+BEGIN
+    PATCH_IF (d2Tab > 0) BEGIN
+        WRITE_SHORT  (SPL_TAB1 + SPL_TAB_SIZE * d2Tab + SPL_TAB_LEVEL)  $d2TabLevel(~%d2SkillLevel%~)
+    END
+    WRITE_ASCIIE (SPL_TAB1 + SPL_TAB_SIZE * d2Tab + SPL_TAB_ICON)   ~%d2Skill%~
+    WRITE_BYTE   (SPL_TAB1 + SPL_TAB_SIZE * d2Tab + SPL_TAB_TARGET) target
+    WRITE_SHORT  (SPL_TAB1 + SPL_TAB_SIZE * d2Tab + SPL_TAB_PROJ)   projectile
+    ++d2SkillLevel
+END
+
+DEFINE_PATCH_FUNCTION d2#refresh_skill RET resOffset
+BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_REMOVE_SPELL target timing = TIMING_PERMANENT END
+    WRITE_ASCIIE resOffset ~%d2Skill%~ #8
+    resOffset += EFF_SIZE
+    LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_GIVE_ABILITY target timing = TIMING_PERMANENT END
+    WRITE_ASCIIE resOffset ~%d2Skill%~ #8
+    resOffset += EFF_SIZE
+END
+
+DEFINE_PATCH_FUNCTION d2#effect_remove_effect RET resOffset
+BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_REMOVE_EFFECT target timing = TIMING_PERMANENT END
+    WRITE_ASCIIE resOffset ~%d2Skill%~ #8
+    resOffset += EFF_SIZE
+END
+
+DEFINE_PATCH_FUNCTION d2#effect_display_icon RET resOffset
+BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_DISPLAY_ICON target
+        parameter2 = ~%d2Skild%~ duration savingthrow savebonus END
+    resOffset += EFF_SIZE
+END
+
+DEFINE_PATCH_FUNCTION d2#effect_play_sound RET resOffset
+BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_PLAY_SOUND target = TARGET_SELF
+        timing = TIMING_PERMANENT END
+    WRITE_ASCIIE resOffset ~%d2SelfSound%~ #8
+    resOffset += EFF_SIZE
+END
+
+DEFINE_PATCH_FUNCTION d2#effect_play_enemy_3d RET resOffset
+BEGIN
+    PATCH_IF (NOT ~%d2Enemy3D%~ STRING_EQUAL "")
+    BEGIN
+        LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_PLAY_3D target parameter2 = 1
+            duration savingthrow savebonus END
+        WRITE_ASCIIE resOffset ~%d2Enemy3D%~ #8
+        resOffset += EFF_SIZE
+    END
+END
+
+DEFINE_PATCH_FUNCTION d2#effect_play_self_3d INT_VAR duration = 1 RET resOffset
+BEGIN
+    PATCH_IF (NOT ~%d2Self3D%~ STRING_EQUAL "")
+    BEGIN
+        LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_PLAY_3D target = TARGET_SELF parameter2 = 1
+            duration savingthrow savebonus END
+        WRITE_ASCIIE resOffset ~%d2Self3D%~ #8
+        resOffset += EFF_SIZE
+    END
+END

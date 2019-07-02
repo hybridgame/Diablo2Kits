@@ -1,14 +1,11 @@
 BACKUP ~d2#bar/backup~
 AUTHOR ~HybridGame~
-VERSION "0.9.20190625"
-
-ALWAYS
-    INCLUDE "d2#bar/lib/fl#add_kit_ee.tpa"
-END
+VERSION "1.0.20190630"
 
 LANGUAGE    ~Korean~
             ~Korean~
-            ~d2#bar/Language/setupko.tra~
+            ~d2#bar/lang/korean/diablo2.tra~
+            ~d2#bar/lang/korean/setup.tra~
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // D2 Barbarian
@@ -16,7 +13,13 @@ LANGUAGE    ~Korean~
 BEGIN ~D2 Barbarian kit for Fighter~
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee~ @1
 
+INCLUDE "d2#bar/lib/fl#add_kit_ee.tpa"
+INCLUDE "d2#bar/lib/weidu.tpa"
+INCLUDE "d2#bar/lib/d2#action.tpa"
+INCLUDE "d2#bar/lib/d2#patch.tpa"
+
 // Add kit.
+PRINT ~===== Adding kit.~
 ADD_KIT ~d2#bar~
     // CLASWEAP.2DA : BG1 proficiencies. (deprecated)
     ~d2#bar   1 1 1 1 1 1 1 1~
@@ -54,7 +57,7 @@ ADD_KIT ~d2#bar~
     ~d2#bar   0 0 0 0 0 0~
     
     // Kit's own clab*.2da
-    ~d2#bar/d2#bar.2da~
+    ~d2#bar/2da/d2#bar.2da~
     
     // KITTABLE.2DA : Selectable race
     ~K_F_H    K_F_D   K_F_G   K_F_E   K_F_HE   K_F_HL   K_F_HO~
@@ -69,13 +72,13 @@ ADD_KIT ~d2#bar~
     ~* * * * * * * * * * * * * * * * * * * *~
     
     // Lowercase name
-    SAY @11
+    SAY @101
     
     // First uppercase name
-    SAY @12
+    SAY @102
     
     // Description
-    SAY @13
+    SAY @103
 
 // Kit detail.
 LAF fl#add_kit_ee
@@ -84,276 +87,408 @@ LAF fl#add_kit_ee
         hpclass = ~HPBARB~
 END
 
-COPY ~d2#bar/2da~   ~override~
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Projectile
-ADD_PROJECTILE ~d2#bar/pro/b#6whil.pro~
-
-// BAM
-COPY ~d2#bar/bam~ ~override~
+// High level abilities 2da file
+COPY ~d2#bar/2da/lud2#bar.2da~ ~override~
 
 // Sound
+PRINT ~===== Copying sound files.~
 COPY ~d2#bar/snd~ ~override~
-
-// Effect
-COPY ~d2#bar/eff~ ~override~
-
-// Potrait icons
-COPY_EXISTING ~statdesc.2da~ ~override~
-INSERT_2DA_ROW 1 3    ~901         @111      B#1HOWLR~
-INSERT_2DA_ROW 1 3    ~902         @121      B#2SHOUR~
-INSERT_2DA_ROW 1 3    ~903         @123      B#2TAUNR~
-INSERT_2DA_ROW 1 3    ~904         @141      B#4BATCR~
-INSERT_2DA_ROW 1 3    ~905         @161      B#5ORDER~
-INSERT_2DA_ROW 1 3    ~906         @163      B#6WARCR~
-INSERT_2DA_ROW 1 3    ~907         @165      B#6COMMR~
-INSERT_2DA_ROW 1 3    ~908         @311      B#1BASHR~
-INSERT_2DA_ROW 1 3    ~909         @321      B#2DOUSR~
-INSERT_2DA_ROW 1 3    ~910         @331      B#3DOUTR~
-INSERT_2DA_ROW 1 3    ~911         @333      B#3STUNR~
-INSERT_2DA_ROW 1 3    ~912         @341      B#4CONCR~
-INSERT_2DA_ROW 1 3    ~913         @361      B#5FRENR~
-INSERT_2DA_ROW 1 3    ~914         @363      B#6WHILR~
-INSERT_2DA_ROW 1 3    ~915         @365      B#6BERSR~
-REPLACE "@111" @111
-REPLACE "@121" @121
-REPLACE "@123" @123
-REPLACE "@141" @141
-REPLACE "@161" @161
-REPLACE "@163" @163
-REPLACE "@165" @165
-REPLACE "@311" @311
-REPLACE "@321" @321
-REPLACE "@331" @331
-REPLACE "@333" @333
-REPLACE "@341" @341
-REPLACE "@361" @361
-REPLACE "@363" @363
-REPLACE "@365" @365
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-COMPILE ~d2#bar/baf~
+OUTER_TEXT_SPRINT d2Kit ~d2#bar~
+OUTER_TEXT_SPRINT d2Pre ~d2#11~
+OUTER_TEXT_SPRINT d2Num ~11~
 
-COPY ~d2#bar/spl/select~ ~override~
+OUTER_TEXT_SPRINT d2Lib ~d2#bar/lib~
+OUTER_TEXT_SPRINT d2Bam ~d2#bar/bam~
+OUTER_TEXT_SPRINT d2Baf ~d2#bar/baf~
+OUTER_TEXT_SPRINT d2Pro ~d2#bar/pro~
 
-COPY ~d2#bar/spl/d2#bar.spl~  ~override~ // Change script
+ACTION_DEFINE_ARRAY d2TabLevel BEGIN 0 1 4 8 12 16 20 24 28 32 36 40 END
+ACTION_DEFINE_ARRAY d2CombatSkill BEGIN 21 22 24 25 27 28 29 30 END
+OUTER_SET d2CombatSkillCount = 8
 
-COPY ~d2#bar/spl/b#tabwc.spl~ ~override~
-SAY NAME1 @102
+// Skill name
 
-COPY ~d2#bar/spl/b#tabcm.spl~ ~override~
-SAY NAME1 @103
+OUTER_SET name01 = RESOLVE_STR_REF(@1101)
+OUTER_SET name03 = RESOLVE_STR_REF(@1103)
+OUTER_SET name04 = RESOLVE_STR_REF(@1104)
+OUTER_SET name05 = RESOLVE_STR_REF(@1105)
+OUTER_SET name07 = RESOLVE_STR_REF(@1107)
+OUTER_SET name09 = RESOLVE_STR_REF(@1109)
+OUTER_SET name10 = RESOLVE_STR_REF(@1110)
 
-COPY ~d2#bar/spl/b#tabcs.spl~ ~override~
-SAY NAME1 @104
+OUTER_SET name21 = RESOLVE_STR_REF(@1121)
+OUTER_SET name22 = RESOLVE_STR_REF(@1122)
+OUTER_SET name24 = RESOLVE_STR_REF(@1124)
+OUTER_SET name25 = RESOLVE_STR_REF(@1125)
+OUTER_SET name27 = RESOLVE_STR_REF(@1127)
+OUTER_SET name28 = RESOLVE_STR_REF(@1128)
+OUTER_SET name29 = RESOLVE_STR_REF(@1129)
+OUTER_SET name30 = RESOLVE_STR_REF(@1130)
 
-COPY ~d2#bar/spl/b#ski01.spl~ ~override~
-SAY NAME1 @110
+OUTER_SET name11 = RESOLVE_STR_REF(@1111)
+OUTER_SET name14 = RESOLVE_STR_REF(@1114)
+OUTER_SET name15 = RESOLVE_STR_REF(@1115)
+OUTER_SET name18 = RESOLVE_STR_REF(@1118)
+OUTER_SET name19 = RESOLVE_STR_REF(@1119)
+OUTER_SET name20 = RESOLVE_STR_REF(@1120)
 
-COPY ~d2#bar/spl/b#ski02.spl~ ~override~
-SAY NAME1 @110
+// Skill description
 
-COPY ~d2#bar/spl/b#ski03.spl~ ~override~
-SAY NAME1 @110
+OUTER_SET desc01 = RESOLVE_STR_REF(@1131)
+OUTER_SET desc03 = RESOLVE_STR_REF(@1133)
+OUTER_SET desc04 = RESOLVE_STR_REF(@1134)
+OUTER_SET desc05 = RESOLVE_STR_REF(@1135)
+OUTER_SET desc07 = RESOLVE_STR_REF(@1137)
+OUTER_SET desc09 = RESOLVE_STR_REF(@1139)
+OUTER_SET desc10 = RESOLVE_STR_REF(@1140)
 
-COPY ~d2#bar/spl/b#ski04.spl~ ~override~
-SAY NAME1 @110
+OUTER_SET desc21 = RESOLVE_STR_REF(@1151)
+OUTER_SET desc22 = RESOLVE_STR_REF(@1152)
+OUTER_SET desc24 = RESOLVE_STR_REF(@1154)
+OUTER_SET desc25 = RESOLVE_STR_REF(@1155)
+OUTER_SET desc27 = RESOLVE_STR_REF(@1157)
+OUTER_SET desc28 = RESOLVE_STR_REF(@1158)
+OUTER_SET desc29 = RESOLVE_STR_REF(@1159)
+OUTER_SET desc30 = RESOLVE_STR_REF(@1160)
 
-COPY ~d2#bar/spl/b#ski05.spl~ ~override~
-SAY NAME1 @110
+OUTER_SET desc11 = RESOLVE_STR_REF(@1141)
+OUTER_SET desc14 = RESOLVE_STR_REF(@1144)
+OUTER_SET desc15 = RESOLVE_STR_REF(@1145)
+OUTER_SET desc18 = RESOLVE_STR_REF(@1148)
+OUTER_SET desc19 = RESOLVE_STR_REF(@1149)
+OUTER_SET desc20 = RESOLVE_STR_REF(@1150)
 
-COPY ~d2#bar/spl/b#ski06.spl~ ~override~
-SAY NAME1 @110
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
-COPY ~d2#bar/spl/b#ski07.spl~ ~override~
-SAY NAME1 @110
-
-COPY ~d2#bar/spl/b#ski08.spl~ ~override~
-SAY NAME1 @110
-
-COPY ~d2#bar/spl/b#ski09.spl~ ~override~
-SAY NAME1 @110
-
-COPY ~d2#bar/spl/b#ski10.spl~ ~override~
-SAY NAME1 @110
-
-COPY ~d2#bar/spl/b#ski11.spl~ ~override~
-SAY NAME1 @110
-
-COPY ~d2#bar/spl/b#ski12.spl~ ~override~
-SAY NAME1 @110
-
-COPY ~d2#bar/spl/b#ski13.spl~ ~override~
-SAY NAME1 @110
-
-COPY ~d2#bar/spl/b#ski14.spl~ ~override~
-SAY NAME1 @110
-
-COPY ~d2#bar/spl/b#ski15.spl~ ~override~
-SAY NAME1 @110
-
-COPY ~d2#bar/spl/b#ski16.spl~ ~override~
-SAY NAME1 @110
-
-COPY ~d2#bar/spl/b#ski17.spl~ ~override~
-SAY NAME1 @110
-
-COPY ~d2#bar/spl/b#ski18.spl~ ~override~
-SAY NAME1 @110
-
-COPY ~d2#bar/spl/b#ski19.spl~ ~override~
-SAY NAME1 @110
+// Skill point
+PRINT ~===== Creating skill points.~
+LAF d2#create_skill_point_spells INT_VAR d2MaxLevel = 19 END
 
 ///////////////////
 // Warcries
+PRINT ~===== Creating Warcries skills.~
 
 // Howl
-COPY ~d2#bar/spl/b#1Howl.spl~ ~override~
-SAY NAME1 @111
-SAY UNIDENTIFIED_DESC @112
-COPY ~d2#bar/spl/b#1Howl3.spl~ ~override~
-SAY NAME1 @111
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_HORROR END
+LAF d2#create_buff_skill
+    INT_VAR
+        d2Name = name01
+        d2Desc = desc01
+        d2SkillLevel = 1
+        projectile = PRJ_INAREANP
+        duration = 12
+        savingthrow = SAV_SPELL
+        savebonus = 1
+        d2DurStep = 6
+        d2SavStep = "-1"
+    STR_VAR
+        d2Skill = "01"
+        d2SelfSound = "D2#1100"
+        d2Enemy3D = "CDHORROR"
+END
 
 // Shout
-COPY ~d2#bar/spl/b#2Shou.spl~ ~override~
-SAY NAME1 @121
-SAY UNIDENTIFIED_DESC @122
-COPY ~d2#bar/spl/b#2Shou3.spl~ ~override~
-SAY NAME1 @121
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_AC END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 2 END
+ACTION_DEFINE_ARRAY d2P1Step BEGIN 1 END
+LAF d2#create_buff_skill
+    INT_VAR
+        d2Name = name03
+        d2Desc = desc03
+        d2SkillLevel = 2
+        projectile = PRJ_INAREAPA
+        duration = 120
+        d2DurStep = 60
+    STR_VAR
+        d2Skill = "03"
+        d2SelfSound = "D2#1100"
+        d2Self3D = "SPWHIRL"
+END
 
 // Taunt
-COPY ~d2#bar/spl/b#2Taun.spl~ ~override~
-SAY NAME1 @123
-SAY UNIDENTIFIED_DESC @124
-COPY ~d2#bar/spl/b#2Taun3.spl~ ~override~
-SAY NAME1 @123
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_THAC0 OP_DAMAGE OP_LIGHTNING_EFFECT END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN "-2" "-2" END
+ACTION_DEFINE_ARRAY d2P1Step BEGIN "-1" "-1" END
+ACTION_DEFINE_ARRAY d2Param2 BEGIN 0 0 14 END
+LAF d2#create_buff_skill
+    INT_VAR
+        d2Name = name04
+        d2Desc = desc04
+        d2SkillLevel = 2
+        duration = 12
+        d2DurStep = 6
+    STR_VAR
+        d2Skill = "04"
+END
 
 // Battle Cry
-COPY ~d2#bar/spl/b#4BatC.spl~ ~override~
-SAY NAME1 @141
-SAY UNIDENTIFIED_DESC @142
-COPY ~d2#bar/spl/b#4BatC3.spl~ ~override~
-SAY NAME1 @141
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_AC OP_DAMAGE OP_HORROR END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN "-2" "-2" END
+ACTION_DEFINE_ARRAY d2P1Step BEGIN "-1" "-1" END
+LAF d2#create_buff_skill
+    INT_VAR
+        d2Name = name05
+        d2Desc = desc05
+        d2SkillLevel = 4
+        projectile = PRJ_INAREANP
+        duration = 12
+        savingthrow = SAV_SPELL
+        savebonus = 0
+        d2DurStep = 6
+        d2SavStep = "-1"
+    STR_VAR
+        d2Skill = "05"
+        d2SelfSound = "D2#1100"
+        d2Enemy3D = "CDHORROR"
+END
 
 // Battle Order
-COPY ~d2#bar/spl/b#5Orde.spl~ ~override~
-SAY NAME1 @161
-SAY UNIDENTIFIED_DESC @162
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_MAX_HP END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 112 END
+ACTION_DEFINE_ARRAY d2P1Step BEGIN 6 END
+ACTION_DEFINE_ARRAY d2Param2 BEGIN 2 END
+LAF d2#create_buff_skill
+    INT_VAR
+        d2Name = name07
+        d2Desc = desc07
+        d2SkillLevel = 5
+        projectile = PRJ_INAREAPA
+        duration = 120
+        d2DurStep = 60
+    STR_VAR
+        d2Skill = "07"
+        d2SelfSound = "D2#1100"
+        d2Self3D = "SPWHIRL"
+END
 
 // War Cry
-COPY ~d2#bar/spl/b#6WarC.spl~ ~override~
-SAY NAME1 @163
-SAY UNIDENTIFIED_DESC @164
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_HP_DAMAGE OP_STUN END
+ACTION_DEFINE_ARRAY d2Param2 BEGIN DAMAGE_MAGIC END
+ACTION_DEFINE_ARRAY d2Dice BEGIN 4 END
+ACTION_DEFINE_ARRAY d2DStep BEGIN 2 END
+ACTION_DEFINE_ARRAY d2DiceSize BEGIN 5 END
+LAF d2#create_buff_skill
+    INT_VAR
+        d2Name = name09
+        d2Desc = desc09
+        d2SkillLevel = 6
+        projectile = PRJ_INAREANP
+        duration = 2
+        d2DurStep = 1
+    STR_VAR
+        d2Skill = "09"
+        d2SelfSound = "D2#1109W"
+        d2Enemy3D = "SPPOWWRD"
+END
 
 // Battle Command
-COPY ~d2#bar/spl/b#6Comm.spl~ ~override~
-SAY NAME1 @165
-SAY UNIDENTIFIED_DESC @166
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_AC OP_THAC0 OP_DAMAGE OP_CASTING_TIME OP_ATTACK_SPEED 
+    OP_SAVE_DEATH OP_SAVE_WANDS OP_SAVE_POLYMORPH OP_SAVE_BREATH OP_SAVE_SPELL END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 1 1 1 1 1 1 1 1 1 1 END
+LAF d2#create_buff_skill
+    INT_VAR
+        d2Name = name10
+        d2Desc = desc10
+        d2SkillLevel = 6
+        projectile = PRJ_INAREAPA
+        duration = 120
+        d2DurStep = 60
+    STR_VAR
+        d2Skill = "10"
+        d2SelfSound = "D2#1100"
+        d2Self3D = "SPWHIRL"
+END
 
 ///////////////////
 // Combat Masteries
+PRINT ~===== Creating Combat Masteries skills.~
 
 // Two Weapon Style Mastery
-COPY ~d2#bar/spl/b#2TWSM.spl~ ~override~
-SAY NAME1 @221
-SAY UNIDENTIFIED_DESC @222
-COPY ~d2#bar/spl/b#2TWSM3.spl~ ~override~
-SAY NAME1 @221
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_PROFICIENCY END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 3 END
+ACTION_DEFINE_ARRAY d2Param2 BEGIN 114 END
+LAF d2#create_passive_skill INT_VAR d2Name = name11 d2Desc = desc11 STR_VAR d2Skill = "11" END
 
 // Two Handed Weapon Style Mastery
-COPY ~d2#bar/spl/b#2THWS.spl~ ~override~
-SAY NAME1 @223
-SAY UNIDENTIFIED_DESC @224
-COPY ~d2#bar/spl/b#2THWS3.spl~ ~override~
-SAY NAME1 @223
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_PROFICIENCY END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 2 END
+ACTION_DEFINE_ARRAY d2Param2 BEGIN 111 END
+LAF d2#create_passive_skill INT_VAR d2Name = name14 d2Desc = desc14 STR_VAR d2Skill = "14" END
 
 // Throwing Mastery
-COPY ~d2#bar/spl/b#2ThrM.spl~ ~override~
-SAY NAME1 @225
-SAY UNIDENTIFIED_DESC @226
-COPY ~d2#bar/spl/b#2ThrM3.spl~ ~override~
-SAY NAME1 @225
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_THAC0_RANGE OP_DAMAGE_RANGE END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 1 1 END
+LAF d2#create_passive_skill INT_VAR d2Name = name15 d2Desc = desc15 STR_VAR d2Skill = "15" END
 
 // Iron Skin
-COPY ~d2#bar/spl/b#4IroS.spl~ ~override~
-SAY NAME1 @241
-SAY UNIDENTIFIED_DESC @242
-COPY ~d2#bar/spl/b#4IroS3.spl~ ~override~
-SAY NAME1 @241
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_RES_SLASH OP_RES_CRUSH OP_RES_PIERCE OP_RES_MISSILE END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 8 8 8 8 END
+LAF d2#create_passive_skill INT_VAR d2Name = name18 d2Desc = desc18 STR_VAR d2Skill = "18" END
 
 // Increased Speed
-COPY ~d2#bar/spl/b#5Spee.spl~ ~override~
-SAY NAME1 @251
-SAY UNIDENTIFIED_DESC @252
-COPY ~d2#bar/spl/b#5Spee3.spl~ ~override~
-SAY NAME1 @251
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_MOVEMENT END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 1 END
+LAF d2#create_passive_skill INT_VAR d2Name = name19 d2Desc = desc19 STR_VAR d2Skill = "19" END
 
 // Natural Resistance
-COPY ~d2#bar/spl/b#6Resi.spl~ ~override~
-SAY NAME1 @261
-SAY UNIDENTIFIED_DESC @262
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_RES_ACID OP_RES_COLD OP_RES_ELEC OP_RES_FIRE END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 8 8 8 8 END
+LAF d2#create_passive_skill INT_VAR d2Name = name20 d2Desc = desc20 STR_VAR d2Skill = "20" END
 
 ///////////////////
 // Combat Skills
+PRINT ~===== Creating Combat Skills skills.~
 
 // Bash
-COPY ~d2#bar/spl/b#1Bash.spl~ ~override~
-SAY NAME1 @311
-SAY UNIDENTIFIED_DESC @312
-COPY ~d2#bar/spl/b#1Bash2.spl~ ~override~
-COPY ~d2#bar/spl/b#1Bash3.spl~ ~override~
-SAY NAME1 @311
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_WING_BUFFET OP_THAC0_MELEE OP_DAMAGE_MELEE END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 2 1 2 END
+ACTION_DEFINE_ARRAY d2P1Step BEGIN 0 1 1 END
+ACTION_DEFINE_ARRAY d2Param2 BEGIN 2 0 0 END
+LAF d2#create_combat_skill
+    INT_VAR
+        d2Name = name21
+        d2Desc = desc21
+        d2SkillLevel = 1
+        duration = 1
+        savingthrow = SAV_BREATHE
+        savebonus = 0
+        d2SavStep = "-1"
+        d2EffectCount = 1
+    STR_VAR
+        d2Skill = "21"
+        d2SelfSound = "D2#1121"
+END
 
 // Double Swing
-COPY ~d2#bar/spl/b#2DouS.spl~ ~override~
-SAY NAME1 @321
-SAY UNIDENTIFIED_DESC @322
-COPY ~d2#bar/spl/b#2DouS3.spl~ ~override~
-SAY NAME1 @321
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_ATTACK_PER_ROUND OP_THAC0_MELEE END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 1 1 END
+ACTION_DEFINE_ARRAY d2P1Step BEGIN 0 1 END
+LAF d2#create_combat_skill
+    INT_VAR
+        d2Name = name22
+        d2Desc = desc22
+        d2SkillLevel = 2
+    STR_VAR
+        d2Skill = "22"
+END
 
 // Double Throw
-COPY ~d2#bar/spl/b#3DouT.spl~ ~override~
-SAY NAME1 @331
-SAY UNIDENTIFIED_DESC @332
-COPY ~d2#bar/spl/b#3DouT3.spl~ ~override~
-SAY NAME1 @331
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_ATTACK_PER_ROUND OP_THAC0_RANGE END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 1 2 END
+ACTION_DEFINE_ARRAY d2P1Step BEGIN 0 2 END
+LAF d2#create_combat_skill
+    INT_VAR
+        d2Name = name24
+        d2Desc = desc24
+        d2SkillLevel = 3
+    STR_VAR
+        d2Skill = "24"
+END
 
 // Stun
-COPY ~d2#bar/spl/b#3Stun.spl~ ~override~
-SAY NAME1 @333
-SAY UNIDENTIFIED_DESC @334
-COPY ~d2#bar/spl/b#3Stun2.spl~ ~override~
-COPY ~d2#bar/spl/b#3Stun3.spl~ ~override~
-SAY NAME1 @333
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_STUN OP_THAC0_MELEE END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 0 1 END
+ACTION_DEFINE_ARRAY d2P1Step BEGIN 0 1 END
+ACTION_DEFINE_ARRAY d2Param2 BEGIN 0 0 END
+LAF d2#create_combat_skill
+    INT_VAR
+        d2Name = name25
+        d2Desc = desc25
+        d2SkillLevel = 3
+        duration = 6
+        savingthrow = SAV_BREATHE
+        savebonus = 1
+        d2SavStep = "-1"
+        d2EffectCount = 1
+    STR_VAR
+        d2Skill = "25"
+        d2SelfSound = "D2#1125"
+END
 
 // Concentration
-COPY ~d2#bar/spl/b#4Conc.spl~ ~override~
-SAY NAME1 @341
-SAY UNIDENTIFIED_DESC @342
-COPY ~d2#bar/spl/b#4Conc2.spl~ ~override~
-COPY ~d2#bar/spl/b#4Conc3.spl~ ~override~
-SAY NAME1 @341
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_AC OP_THAC0_MELEE OP_DAMAGE_MELEE END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 2 2 2 END
+ACTION_DEFINE_ARRAY d2P1Step BEGIN 1 2 1 END
+LAF d2#create_combat_skill
+    INT_VAR
+        d2Name = name27
+        d2Desc = desc27
+        d2SkillLevel = 4
+    STR_VAR
+        d2Skill = "27"
+        d2SelfSound = "D2#1127"
+END
 
 // Frenzy
-COPY ~d2#bar/spl/b#5Fren.spl~ ~override~
-SAY NAME1 @361
-SAY UNIDENTIFIED_DESC @362
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_ATTACK_PER_ROUND OP_THAC0_MELEE OP_DAMAGE_MELEE OP_MOVEMENT END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 1 2 2 2 END
+ACTION_DEFINE_ARRAY d2P1Step BEGIN 0 2 1 1 END
+LAF d2#create_combat_skill
+    INT_VAR
+        d2Name = name28
+        d2Desc = desc28
+        d2SkillLevel = 5
+    STR_VAR
+        d2Skill = "28"
+END
 
 // Whirlwind
-COPY ~d2#bar/spl/b#6Whil.spl~ ~override~
-SAY NAME1 @363
-SAY UNIDENTIFIED_DESC @364
-COPY ~d2#bar/spl/b#6Whil2.spl~ ~override~
-WRITE_SHORT   0x98  ~%b#6whil%~
-WRITE_SHORT   0xc0  ~%b#6whil%~
-WRITE_SHORT   0xe8  ~%b#6whil%~
-WRITE_SHORT   0x110 ~%b#6whil%~
+ADD_PROJECTILE ~%d2Pro%/d2#1129.pro~
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_HP_DAMAGE OP_THAC0_MELEE END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 2 1 END
+ACTION_DEFINE_ARRAY d2P1Step BEGIN 1 1 END
+ACTION_DEFINE_ARRAY d2Param2 BEGIN DAMAGE_SLASH END
+ACTION_DEFINE_ARRAY d2Dice BEGIN 1 END
+ACTION_DEFINE_ARRAY d2DiceSize BEGIN 3 END
+ACTION_DEFINE_ARRAY d2DSStep BEGIN 2 END
+LAF d2#create_combat_skill
+    INT_VAR
+        d2Name = name29
+        d2Desc = desc29
+        d2SkillLevel = 6
+        projectile = ~%d2#1129%~
+        d2EffectCount = 1
+    STR_VAR
+        d2Skill = "29"
+        d2SelfSound = "D2#1129"
+END
 
 // Berserk
-COPY ~d2#bar/spl/b#6Bers.spl~ ~override~
-SAY NAME1 @365
-SAY UNIDENTIFIED_DESC @366
-COPY ~d2#bar/spl/b#6Bers2.spl~ ~override~
+LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_HP_DAMAGE OP_AC OP_THAC0_MELEE OP_DAMAGE_MELEE END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 10 "-10" 3 "-6" END
+ACTION_DEFINE_ARRAY d2P1Step BEGIN 5 2 3 "-3" END
+ACTION_DEFINE_ARRAY d2Param2 BEGIN DAMAGE_MAGIC END
+LAF d2#create_combat_skill
+    INT_VAR
+        d2Name = name30
+        d2Desc = desc30
+        d2SkillLevel = 6
+        d2EffectCount = 1
+    STR_VAR
+        d2Skill = "30"
+        d2SelfSound = "D2#1130"
+END

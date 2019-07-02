@@ -1,0 +1,261 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_ACTION_FUNCTION CreateSkillPoints
+    INT_VAR
+        maxLevel = 0
+BEGIN
+    COPY ~%d2Lib%/skill.bam~ ~override/%d2Pre%00.bam~
+
+    COMPILE ~%d2Baf%~
+    COPY ~%d2Lib%/template.cre~ ~override/%d2Kit%.cre~
+        WRITE_ASCIIE CRE_SCRIPT_OVERRIDE    ~%d2Kit%~
+        WRITE_ASCIIE CRE_DIALOG             ~%d2Kit%~
+
+    OUTER_SET name = RESOLVE_STR_REF(@3)
+    OUTER_FOR(skill = 71; skill < (71 + maxLevel); ++skill)
+    BEGIN
+        COPY ~%d2Lib%/templat1.spl~ ~override/%d2Pre%%skill%.spl~
+            LPF SetSpell        INT_VAR name STR_VAR skill = "00" END
+            LPF SetSpellHeader  INT_VAR target = TAB_TARGET_SELF STR_VAR skill = "00" END
+            LPF EffRemoveSpell  STR_VAR skill END
+            LPF ADD_SPELL_EFFECT INT_VAR opcode = OP_CREATURE_SUMMON target = TARGET_CREATURE
+                duration = 60 parameter2 = 2 STR_VAR resource = EVAL ~%d2Kit%~ END
+    END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_ACTION_FUNCTION CreateLearningSpell
+    INT_VAR
+        opcode = OP_GIVE_ABILITY
+        target = TARGET_CREATURE
+        timing = TIMING_PERMANENT
+    RET
+        spell
+        spellId
+BEGIN
+    OUTER_SPRINT spell   ~%d2Pre%%skill%~
+    OUTER_SPRINT spellId ~%d2Num%%skill%~
+
+    // Portrait icon
+    APPEND ~statdesc.2da~ ~%spellId% %name% %spell%b~
+
+    // Copy bam
+    COPY ~%d2Bam%/%spell%.bam~    ~override~
+    COPY ~%d2Bam%/%spell%b.bam~   ~override~
+
+    // Spell for learning skill
+    COPY ~%d2Lib%/templat1.spl~ ~override/%spell%l.spl~
+        LPF SetSpell        INT_VAR name STR_VAR skill END
+        LPF SetSpellHeader  STR_VAR skill END
+        LPF ADD_SPELL_EFFECT INT_VAR target timing opcode STR_VAR resource = EVAL ~%spell%~ END
+        LPF ADD_SPELL_EFFECT INT_VAR target timing opcode = OP_HIGH_ABILITY
+            STR_VAR resource = EVAL ~%spell%~ END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_ACTION_FUNCTION CreateAuraSpell
+    INT_VAR
+        name = "-1"
+        desc = "-1"
+        skillLevel = 1
+        spellId = 0
+        opcode = 0
+    STR_VAR
+        spell = ""
+BEGIN
+    COPY ~%d2Lib%/templat1.spl~ ~override/%spell%.spl~
+        LPF SetSpell INT_VAR name desc STR_VAR skill END
+        WRITE_ASCIIE SPL_SOUND ~%spell%~ #8
+        LPF PatchAura INT_VAR skillLevel spellId STR_VAR skill RET header END
+        LPF EffCastSpellCond STR_VAR resource = EVAL ~%d2Pre%%skill%a~ END
+        PATCH_IF (opcode > 0) BEGIN LPF EffSetEffect INT_VAR opcode STR_VAR skill END END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_ACTION_FUNCTION CreateBuffAura
+    INT_VAR
+        name = "-1"
+        desc = "-1"
+        skillLevel = 1
+        target = TARGET_PARTY
+        doubleOpcode = "-1"
+    STR_VAR
+        skill = ""
+BEGIN
+    LAF CreateLearningSpell RET spell spellId END
+
+    COPY ~%d2Lib%/templat4.spl~ ~override/%spell%.spl~
+        LPF SetSpell INT_VAR name desc STR_VAR skill END
+        WRITE_ASCIIE SPL_SOUND ~%spell%~ #8
+        FOR (i = 0; i < d2TabCount; ++i)
+        BEGIN
+            LPF PatchAura INT_VAR target i skillLevel spellId STR_VAR skill RET header END
+            LPF AddOpcodeList INT_VAR i header target timing = TIMING_AFTER doubleOpcode END
+        END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_ACTION_FUNCTION CreateDamagingAura
+    INT_VAR
+        name = "-1"
+        desc = "-1"
+        skillLevel = 1
+        damageType = 0
+    STR_VAR
+        skill = ""
+BEGIN
+    LAF CreateLearningSpell RET spell spellId END
+    LAF CreateAuraSpell     INT_VAR name desc skillLevel spellId opcode = OP_SET_MELEE
+        STR_VAR spell END
+
+    COPY ~%d2Lib%/template.eff~ ~override/%spell%.eff~
+        WRITE_ASCIIE 0x0030 ~%spell%m~ #8
+
+    COPY ~%d2Lib%/templat4.spl~ ~override/%spell%m.spl~
+        FOR (i = 0; i < d2TabCount; ++i)
+        BEGIN
+            header = i + 1
+            LPF SetSpellHeader  INT_VAR header skillLevel STR_VAR skill END
+            LPF EffDoDamage     INT_VAR header type = damageType
+                amount      = $d2Melee(0) + $d2Melee(1) * i
+                dicenumber  = $d2Melee(2) + $d2Melee(3) * i
+                dicesize    = $d2Melee(4) + $d2Melee(5) * i END
+        END
+
+    COPY ~%d2Lib%/templat4.spl~ ~override/%spell%a.spl~
+        FOR (i = 0; i < d2TabCount; ++i)
+        BEGIN
+            header = i + 1
+            LPF SetSpellHeader  INT_VAR header skillLevel projectile = $d2Projectile(~%i%~)
+                STR_VAR skill END
+            LPF EffDoDamage     INT_VAR header type = damageType
+                amount      = $d2Range(0) + $d2Range(1) * i
+                dicenumber  = $d2Range(2) + $d2Range(3) * i
+                dicesize    = $d2Range(4) + $d2Range(5) * i END
+        END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_ACTION_FUNCTION CreateDebuffAura
+    INT_VAR
+        name = "-1"
+        desc = "-1"
+        skillLevel = 1
+    STR_VAR
+        skill = ""
+BEGIN
+    LAF CreateLearningSpell RET spell spellId END
+    LAF CreateAuraSpell     INT_VAR name desc skillLevel spellId STR_VAR spell END
+
+    // Conviction
+    COPY ~%d2Lib%/templat4.spl~ ~override/%spell%a.spl~
+        FOR (i = 0; i < d2TabCount; ++i)
+        BEGIN
+            header = i + 1
+            LPF SetSpellHeader  INT_VAR header skillLevel projectile = $d2Projectile(~%i%~)
+                STR_VAR skill END
+            LPF AddOpcodeList INT_VAR i header target = TARGET_CREATURE duration = 6 END
+        END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_ACTION_FUNCTION CreateCombatSkill
+    INT_VAR
+        name = "-1"
+        desc = "-1"
+        skillLevel = 1
+        effectCount = 0
+        setEffect = OP_SET_MELEE
+        setTarget = TARGET_CREATURE
+    STR_VAR
+        skill = ""
+BEGIN
+    LAF CreateLearningSpell RET spell spellId END
+
+    COPY ~%d2Lib%/templat4.spl~ ~override/%spell%.spl~
+        LPF SetSpell INT_VAR name desc STR_VAR skill END
+        FOR (i = 0; i < d2TabCount; ++i)
+        BEGIN
+            header = i + 1
+            LPF SetSpellHeader  INT_VAR header target = TAB_TARGET_SELF skillLevel STR_VAR skill END
+            FOR(k = 0; k < d2CombatSkillCount; ++k)
+            BEGIN
+                LPF EffRemoveEffect INT_VAR header target = TARGET_PARTY
+                    STR_VAR skill = EVAL $d2CombatSkill(~%k%~) END
+            END
+            LPF RefreshSkill INT_VAR header STR_VAR skill END
+            LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_DISPLAY_ICON target = TARGET_SELF
+                timing = TIMING_AFTER parameter2 = ~%spellId%~ END
+            PATCH_IF (effectCount > 0) BEGIN
+                LPF EffSetEffect INT_VAR header opcode = setEffect STR_VAR skill END
+            END
+            LPF AddOpcodeList INT_VAR i j = effectCount header timing = TIMING_AFTER END
+        END
+
+    ACTION_IF (effectCount > 0)
+    BEGIN
+        COPY ~%d2Lib%/template.eff~ ~override/%spell%.eff~
+            WRITE_LONG   0x0014 setTarget
+            WRITE_ASCIIE 0x0030 ~%spell%m~ #8
+
+        COPY ~%d2Lib%/templat4.spl~ ~override/%spell%m.spl~
+            FOR (i = 0; i < d2TabCount; ++i)
+            BEGIN
+                header = i + 1
+                LPF SetSpellHeader  INT_VAR header skillLevel STR_VAR skill END
+                LPF AddOpcodeList INT_VAR i opcodeCount = effectCount header timing = TIMING_PERMANENT END
+            END
+    END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_ACTION_FUNCTION CreateTargetSkill
+    INT_VAR
+        name = "-1"
+        desc = "-1"
+        skillLevel = 1
+        tabTarget = TAB_TARGET_CREATURE
+        projectile = 0
+        target = TARGET_CREATURE
+        timing = TIMING_DURATION
+        duration = 0
+        durStep = 0
+    STR_VAR
+        skill = ""
+BEGIN
+    LAF CreateLearningSpell RET spell spellId END
+
+    COPY ~%d2Lib%/templat4.spl~ ~override/%spell%.spl~
+        LPF SetSpell INT_VAR name desc STR_VAR skill END
+        WRITE_ASCIIE SPL_SOUND ~%spell%~ #8
+        FOR (i = 0; i < d2TabCount; ++i)
+        BEGIN
+            header = i + 1
+            LPF SetSpellHeader INT_VAR header skillLevel target = tabTarget projectile
+                STR_VAR skill END
+            PATCH_IF (duration > 0)
+            BEGIN
+                LPF EffRemoveEffect INT_VAR header target STR_VAR skill END
+                LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_DISPLAY_ICON target
+                    duration parameter2 = ~%spellId%~ END
+            END
+            LPF AddOpcodeList INT_VAR i header target timing duration STR_VAR spell END
+            duration += durStep
+        END
+
+    OUTER_FOR (j = 0; $d2Opcode(~%j%~) >= 0; ++j)
+    BEGIN
+        ACTION_IF ($d2IDSFile(~%j%~) > 0)
+        BEGIN
+            COPY ~%d2Lib%/template.eff~ ~override/%spell%%j%.eff~
+                WRITE_ASCIIE 0x0030 ~%spell%%j%~ #8
+            COPY ~%d2Lib%/templat4.spl~ ~override/%spell%%j%.spl~
+                FOR (i = 0; i < d2TabCount; ++i)
+                BEGIN
+                    header = i + 1
+                    LPF SetSpellHeader  INT_VAR header skillLevel STR_VAR skill END
+                    LPF AddOpcodeList INT_VAR i j opcodeCount = j + 1 idsSpell = 1
+                        header target timing duration END
+                END
+        END
+    END
+END

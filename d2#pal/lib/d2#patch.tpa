@@ -1,0 +1,183 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_ACTION_MACRO ClearArray
+BEGIN
+    ACTION_DEFINE_ARRAY d2Opcode    BEGIN "-1" "-1" "-1" "-1" "-1" "-1" "-1" "-1" "-1" "-1"
+        "-1" "-1" "-1" "-1" "-1" "-1" END
+    ACTION_DEFINE_ARRAY d2Param1    BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2Param2    BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2P1Step    BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2P2Step    BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2Dice      BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2DStep     BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2DiceSize  BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2DSStep    BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2Melee     BEGIN 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2Range     BEGIN 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2IDSFile   BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2IDSEntry  BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_PATCH_FUNCTION SetSpell
+    INT_VAR
+        name = "-1"
+        desc = "-1"
+    STR_VAR
+        skill = ""
+BEGIN
+    WRITE_LONG   NAME1      name
+    WRITE_LONG   SPL_DESC   desc
+    WRITE_ASCIIE SPL_ICON   ~%d2Pre%%skill%~ #8
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_PATCH_FUNCTION SetSpellHeader
+    INT_VAR
+        header = 1
+        target = TAB_TARGET_CREATURE
+        projectile = 0
+        skillLevel = 1
+    STR_VAR
+        skill = ""
+BEGIN
+    skillLevel = skillLevel + header - 1
+    PATCH_IF (header = 1) BEGIN skillLevel = 1 END
+    LPF ALTER_SPELL_HEADER INT_VAR header target projectile min_level = $d2TabLevel(~%skillLevel%~)
+        STR_VAR icon = EVAL ~%d2Pre%%skill%~ END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_PATCH_FUNCTION EffRemoveSpell
+    INT_VAR
+        header = 1
+        target = TARGET_SELF
+    STR_VAR
+        skill = ""
+BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_REMOVE_SPELL target timing = TIMING_PERMANENT
+        STR_VAR resource = EVAL ~%d2Pre%%skill%~ END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_PATCH_FUNCTION EffRemoveEffect
+    INT_VAR
+        header = 1
+        target = TARGET_SELF
+    STR_VAR
+        skill = ""
+BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_REMOVE_EFFECT target timing = TIMING_PERMANENT
+        STR_VAR resource = EVAL ~%d2Pre%%skill%~ END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_PATCH_FUNCTION EffDoDamage
+    INT_VAR
+        header = 1
+        target = TARGET_CREATURE
+        timing = TIMING_PERMANENT
+        amount = 0
+        type = 0
+        dicenumber = 0
+        dicesize = 0
+BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_HP_DAMAGE target timing 
+        parameter1 = amount parameter2 = type dicenumber dicesize END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_PATCH_FUNCTION EffCastSpellCond
+    INT_VAR
+        header = 1
+    STR_VAR
+        resource = ""
+BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_CAST_SPELL_COND target = TARGET_SELF
+        timing = TIMING_AFTER parameter2 = 1 STR_VAR resource END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_PATCH_FUNCTION EffSetEffect
+    INT_VAR
+        header = 1
+        opcode = OP_SET_MELEE
+    STR_VAR
+        skill = ""
+BEGIN
+    LPF ADD_SPELL_EFFECT INT_VAR header opcode target = TARGET_SELF
+        timing = TIMING_AFTER STR_VAR resource = EVAL ~%d2Pre%%skill%~ END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_PATCH_FUNCTION RefreshSkill
+    INT_VAR
+        header = 1
+    STR_VAR
+        skill = ""
+BEGIN
+    LPF EffRemoveSpell INT_VAR header STR_VAR skill END
+    LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_GIVE_ABILITY target = TARGET_SELF
+        timing = TIMING_PERMANENT STR_VAR resource = EVAL ~%d2Pre%%skill%~ END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_PATCH_FUNCTION PatchAura
+    INT_VAR
+        target = TARGET_SELF
+        i = 0
+        skillLevel = 1
+        spellId = 0
+    STR_VAR
+        skill = ""
+    RET
+        header
+BEGIN
+    header = i + 1
+    LPF SetSpellHeader INT_VAR header skillLevel target = TAB_TARGET_SELF STR_VAR skill END
+    FOR(k = 0; k < d2AuraSkillCount; ++k)
+    BEGIN
+        LPF EffRemoveEffect INT_VAR header target = TARGET_PARTY
+            STR_VAR skill = EVAL $d2AuraSkill(~%k%~) END
+    END
+    LPF RefreshSkill INT_VAR header STR_VAR skill END
+    LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_DISPLAY_ICON target timing = TIMING_AFTER
+        parameter2 = ~%spellId%~ END
+END
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_PATCH_FUNCTION AddOpcodeList
+    INT_VAR
+        i = 0
+        j = 0
+        header = 1
+        target = TARGET_CREATURE
+        timing = TIMING_DURATION
+        duration = 0
+        doubleOpcode = "-1"
+        opcodeCount = 999
+        idsSpell = 0
+    STR_VAR
+        spell = ""
+BEGIN
+    FOR (; ($d2Opcode(~%j%~) >= 0) AND (j < opcodeCount); ++j)
+    BEGIN
+        PATCH_IF ($d2IDSFile(~%j%~) = 0) OR (idsSpell = 1)
+        BEGIN
+            parameter1  = $d2Param1(~%j%~)  + $d2P1Step(~%j%~) * i
+            parameter2  = $d2Param2(~%j%~)  + $d2P2Step(~%j%~) * i
+            dicenumber  = $d2Dice(~%j%~)    + $d2DStep(~%j%~)  * i
+            dicesize    = $d2DiceSize(~%j%~)+ $d2DSStep(~%j%~) * i
+            LPF ADD_SPELL_EFFECT INT_VAR header opcode = $d2Opcode(~%j%~) target timing duration
+                parameter1 parameter2 dicenumber dicesize END
+            PATCH_IF ($d2Opcode(~%j%~) = doubleOpcode) BEGIN
+                LPF ADD_SPELL_EFFECT INT_VAR header opcode = doubleOpcode target = TARGET_SELF
+                    timing duration parameter1 parameter2 dicenumber dicesize END
+            END
+        END
+        ELSE BEGIN
+            LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_USE_EFF_FILE target
+                timing = TIMING_PERMANENT parameter1 = $d2IDSEntry(~%j%~)
+                parameter2 = $d2IDSFile(~%j%~) STR_VAR resource = EVAL ~%spell%%j%~ END
+        END
+    END
+END

@@ -1,0 +1,240 @@
+DEFINE_ACTION_FUNCTION d2#create_skill_point_spells
+    INT_VAR
+        d2MaxLevel = 0
+BEGIN
+    OUTER_SPRINT d2Point ~%d2Pre%00~
+    COPY ~%d2Lib%/skill.bam~ ~override/%d2Point%.bam~
+
+    COMPILE ~%d2Baf%~
+    COPY ~%d2Lib%/template.cre~ ~override/%d2Kit%.cre~
+        WRITE_ASCIIE CRE_SCRIPT_OVERRIDE    ~%d2Kit%~
+        WRITE_ASCIIE CRE_DIALOG             ~%d2Kit%~
+
+    OUTER_FOR(skill = 71; skill < (71 + d2MaxLevel); ++skill)
+    BEGIN
+        OUTER_SPRINT d2Skill ~%d2Pre%%skill%~
+        COPY ~%d2Lib%/templat1.spl~ ~override/%d2Skill%.spl~
+            SAY NAME1 @3
+            WRITE_ASCIIE SPL_ICON       ~%d2Point%~ #8
+            WRITE_ASCIIE SPL_TAB1_ICON  ~%d2Point%~ #8
+            WRITE_BYTE   (SPL_TAB1 + SPL_TAB_TARGET) TAB_TARGET_SELF
+            LPF ADD_SPELL_EFFECT INT_VAR opcode = OP_REMOVE_SPELL
+                target = TARGET_CREATURE timing = TIMING_PERMANENT END
+            WRITE_ASCIIE SPL_TAB1_EFF1_RESOURCE ~%d2Skill%~ #8
+            LPF ADD_SPELL_EFFECT INT_VAR opcode = OP_CREATURE_SUMMON
+                target = TARGET_CREATURE duration = 60 parameter2 = 2 END
+            WRITE_ASCIIE SPL_TAB1_EFF2_RESOURCE ~%d2Kit%~ #8
+    END
+END
+
+DEFINE_ACTION_FUNCTION d2#create_learning_spell
+    INT_VAR
+        d2Learn = OP_GIVE_ABILITY
+        d2Timing = TIMING_PERMANENT
+    RET
+        d2Skild
+        d2Skill
+        d2Skilb
+        resOffset
+BEGIN
+    OUTER_SPRINT d2Skild ~%d2Num%%d2Skill%~ // Portrait icon number (1101)
+    OUTER_SPRINT d2Skill ~%d2Pre%%d2Skill%~ // Spell name (d2#1101)
+    OUTER_SPRINT d2Skilb ~%d2Skill%b~       // Portrait icon bam (d2#1101b)
+    OUTER_SET    resOffset = SPL_TAB5 + EFF_RESOURCE
+
+    // Portrait icon
+    APPEND ~statdesc.2da~ ~%d2Skild% %d2Name% %d2Skilb%~
+
+    // Copy bam
+    COPY ~%d2Bam%/%d2Skill%.bam~ ~override~
+    COPY ~%d2Bam%/%d2Skilb%.bam~ ~override~
+
+    // Spell for learning skill
+    OUTER_SET target = TARGET_CREATURE
+    OUTER_SET timing = TIMING_PERMANENT
+    COPY ~%d2Lib%/templat1.spl~ ~override/%d2Skill%l.spl~
+        LPF d2#patch_basic_info END
+        WRITE_ASCIIE SPL_TAB1_ICON  ~%d2Skill%~ #8
+        LPF ADD_SPELL_EFFECT INT_VAR target timing = d2Timing opcode = d2Learn END
+        WRITE_ASCIIE SPL_TAB1_EFF1_RESOURCE ~%d2Skill%~ #8
+        LPF ADD_SPELL_EFFECT INT_VAR target timing opcode = OP_HIGH_ABILITY END
+        WRITE_ASCIIE SPL_TAB1_EFF2_RESOURCE ~%d2Skill%~ #8
+        //LPF ADD_SPELL_EFFECT INT_VAR target timing opcode = OP_GLOBAL_VAR END
+        //WRITE_ASCIIE SPL_TAB1_EFF3_RESOURCE ~%d2Skill%~ #8
+END
+
+DEFINE_ACTION_FUNCTION d2#create_buff_skill
+    INT_VAR
+        d2Name = "-1"
+        d2Desc = "-1"
+        d2SkillLevel = 1
+        projectile = 0
+        target = TARGET_CREATURE
+        duration = 0
+        savingthrow = 0
+        savebonus = 0
+        d2DurStep = 0
+        d2SavStep = 0
+        d2TabTarget = TAB_TARGET_SELF
+    STR_VAR
+        d2Skill = ""
+        d2SelfSound = ""
+        d2Enemy3D = ""
+        d2Self3D = ""
+BEGIN
+    LAF d2#create_learning_spell RET d2Skild d2Skill d2Skilb resOffset END
+
+    COPY ~%d2Lib%/templat4.spl~ ~override/%d2Skill%.spl~
+        LPF d2#patch_basic_info END
+        WRITE_ASCIIE SPL_SOUND ~%d2Skill%~ #8
+        FOR (i = 0; i < 4; ++i)
+        BEGIN
+            header = i + 1
+            LPF d2#patch_tab INT_VAR d2Tab = i target = d2TabTarget projectile RET d2SkillLevel END
+
+            LPF d2#effect_remove_effect RET resOffset END
+            LPF d2#effect_display_icon  RET resOffset END
+            LPF d2#effect_play_sound    RET resOffset END
+            LPF d2#effect_play_self_3d  RET resOffset END
+            LPF d2#effect_play_enemy_3d RET resOffset END
+
+            j = 0
+            WHILE ($d2Opcode(~%j%~) >= 0)
+            BEGIN
+                parameter1 = $d2Param1(~%j%~) + $d2P1Step(~%j%~) * i
+                parameter2 = $d2Param2(~%j%~) + $d2P2Step(~%j%~) * i
+                dicenumber = $d2Dice(~%j%~) + $d2DStep(~%j%~) * i
+                dicesize = $d2DiceSize(~%j%~) + $d2DSStep(~%j%~) * i
+                LPF ADD_SPELL_EFFECT INT_VAR header opcode = $d2Opcode(~%j%~) target duration
+                    savingthrow savebonus parameter1 parameter2 dicenumber dicesize END
+                resOffset += EFF_SIZE
+                ++j
+            END
+            LPF ALTER_SPELL_EFFECT INT_VAR match_opcode = OP_HP_DAMAGE timing = TIMING_PERMANENT duration = 0 END
+
+            duration += d2DurStep
+            savebonus += d2SavStep
+        END
+END
+
+DEFINE_ACTION_FUNCTION d2#create_passive_skill
+    INT_VAR
+        d2Name = "-1"
+        d2Desc = "-1"
+        d2SkillLevel = 1
+    STR_VAR
+        d2Skill = ""
+BEGIN
+    LAF d2#create_learning_spell INT_VAR d2Learn = OP_CAST_SPELL d2Timing = TIMING_AFTER
+        RET d2Skild d2Skill d2Skilb resOffset END
+
+    COPY ~%d2Lib%/templat1.spl~ ~override/%d2Skill%.spl~
+        LPF d2#patch_basic_info END
+        LPF d2#patch_tab END
+        j = 0
+        WHILE ($d2Opcode(~%j%~) >= 0)
+        BEGIN
+            LPF ADD_SPELL_EFFECT INT_VAR opcode = $d2Opcode(~%j%~) target = TARGET_CREATURE
+                timing = TIMING_AFTER parameter1 = $d2Param1(~%j%~) parameter2 = $d2Param2(~%j%~) END
+            resOffset += EFF_SIZE
+            ++j
+        END
+END
+
+DEFINE_ACTION_FUNCTION d2#create_combat_skill
+    INT_VAR
+        d2Name = "-1"
+        d2Desc = "-1"
+        d2SkillLevel = 1
+        projectile = 0
+        target = TARGET_CREATURE
+        timing = TIMING_AFTER
+        duration = 0
+        savingthrow = 0
+        savebonus = 0
+        d2DurStep = 0
+        d2SavStep = 0
+        d2EffectCount = 0
+        d2SetEffect = OP_SET_MELEE
+    STR_VAR
+        d2Skill = ""
+        d2SelfSound = ""
+BEGIN
+    LAF d2#create_learning_spell RET d2Skild d2Skill d2Skilb resOffset END
+
+    COPY ~%d2Lib%/templat4.spl~ ~override/%d2Skill%.spl~
+        LPF d2#patch_basic_info END
+        FOR (i = 0; i < 4; ++i)
+        BEGIN
+            header = i + 1
+            LPF d2#patch_tab INT_VAR d2Tab = i target = TAB_TARGET_SELF RET d2SkillLevel END
+
+            // Remove all skill effects
+            FOR(k = 0; k < d2CombatSkillCount; ++k)
+            BEGIN
+                LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_REMOVE_EFFECT target
+                    timing = TIMING_PERMANENT END
+                SPRINT temp $d2CombatSkill(~%k%~)
+                WRITE_ASCIIE resOffset ~%d2Pre%%temp%~ #8
+                resOffset += EFF_SIZE
+            END
+
+            LPF d2#refresh_skill RET resOffset END
+
+            // Display icon
+            LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_DISPLAY_ICON target timing
+                parameter2 = ~%d2Skild%~ END
+            resOffset += EFF_SIZE
+
+            // Set melee/range effect
+            PATCH_IF (d2EffectCount > 0)
+            BEGIN
+                LPF ADD_SPELL_EFFECT INT_VAR header opcode = d2SetEffect target timing END
+                WRITE_ASCIIE resOffset ~%d2Skill%~ #8
+                resOffset += EFF_SIZE
+            END
+
+            // buff
+            j = d2EffectCount
+            WHILE ($d2Opcode(~%j%~) >= 0)
+            BEGIN
+                parameter1 = $d2Param1(~%j%~) + $d2P1Step(~%j%~) * i
+                parameter2 = $d2Param2(~%j%~) + $d2P2Step(~%j%~) * i
+                LPF ADD_SPELL_EFFECT INT_VAR header opcode = $d2Opcode(~%j%~) target timing
+                    parameter1 parameter2 END
+                resOffset += EFF_SIZE
+                ++j
+            END
+        END
+
+    ACTION_IF (d2EffectCount > 0)
+    BEGIN
+        COPY ~%d2Lib%/template.eff~ ~override/%d2Skill%.eff~
+            WRITE_ASCIIE 0x0030 ~%d2Skill%m~ #8
+
+        OUTER_SET d2SkillLevel -= 4
+        OUTER_SET resOffset = SPL_TAB5 + EFF_RESOURCE
+        COPY ~%d2Lib%/templat4.spl~ ~override/%d2Skill%m.spl~
+            FOR (i = 0; i < 4; ++i)
+            BEGIN
+                header = i + 1
+                LPF d2#patch_tab INT_VAR d2Tab = i projectile RET d2SkillLevel END
+                LPF d2#effect_play_sound RET resOffset END
+
+                FOR (j = 0; j < d2EffectCount; ++j)
+                BEGIN
+                    parameter1 = $d2Param1(~%j%~) + $d2P1Step(~%j%~) * i
+                    parameter2 = $d2Param2(~%j%~) + $d2P2Step(~%j%~) * i
+                    dicenumber = $d2Dice(~%j%~) + $d2DStep(~%j%~) * i
+                    dicesize = $d2DiceSize(~%j%~) + $d2DSStep(~%j%~) * i
+                    LPF ADD_SPELL_EFFECT INT_VAR header opcode = $d2Opcode(~%j%~) target duration
+                        savingthrow savebonus parameter1 parameter2 dicenumber dicesize END
+                    resOffset += EFF_SIZE
+                END
+                LPF ALTER_SPELL_EFFECT INT_VAR match_opcode = OP_HP_DAMAGE timing = TIMING_PERMANENT duration = 0 END
+
+                duration += d2DurStep
+                savebonus += d2SavStep
+            END
+    END
+END

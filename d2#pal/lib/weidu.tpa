@@ -1,0 +1,168 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Spell
+
+////////////////////
+// Header
+
+OUTER_SET   SPL_SOUND       = 0x0010    // 8 char
+// 5 Outdoors only
+// 6 No failure
+// 7 no wildsurge
+OUTER_SET   FLAG_NOT_FAILURE= 256 * (64 + 128)
+OUTER_SET   SPL_FLAG        = 0x0018    // dword
+//0=Special
+//1=Wizard
+//2=Cleric
+//3=Psionic
+//4=Innate
+//5=Bardsong
+OUTER_SET   SPL_TYPE        = 0x001C    // word
+OUTER_SET   SPL_LEVEL       = 0x0034    // dword
+OUTER_SET   SPL_ICON        = 0x003a    // 8 char
+OUTER_SET   SPL_DESC        = 0x0050    // dword
+OUTER_SET   SPL_TAB_OFFESET = 0x0064    // dword
+OUTER_SET   SPL_TAB_COUNT   = 0x0068    // word
+OUTER_SET   SPL_EFF_OFFSET  = 0x006a    // dword
+
+////////////////////
+// Extended Header
+
+OUTER_SET   TAB_TARGET_CREATURE = 1
+OUTER_SET   TAB_TARGET_AREA     = 4
+OUTER_SET   TAB_TARGET_SELF     = 5
+
+////////////////////
+// EFFECT Block
+
+OUTER_SET   TARGET_SELF     = 1
+OUTER_SET   TARGET_CREATURE = 2
+OUTER_SET   TARGET_PARTY    = 3
+//4=Everyone (inc. party)
+//5=Everyone (excl. party)
+//6=Everyone matching specific value of caster (or Party if cast by party member)
+//7=Everyone matching specific value of target
+//8=Everyone (excl. caster)
+//9=Self (post-projectile)
+
+OUTER_SET   TIMING_DURATION = 0
+OUTER_SET   TIMING_PERMANENT= 1
+OUTER_SET   TIMING_EQUIP    = 2
+OUTER_SET   TIMING_AFTER    = 9
+//3=Delayed Duration
+//4=Delayed
+//5=Delayed?
+//6=Duration?
+//7=Permanent?
+//8=Permanent?
+//9=Permanent (after Death)
+//10=Trigger
+
+//0=Nonmagical
+//1=Can be dispelled/Affected by resistance
+//2=Cannot be dispelled/Ignores resistance
+//3=Can be dispelled/Ignores resistance
+
+OUTER_SET   SAV_SPELL       = 1
+OUTER_SET   SAV_BREATHE     = 2
+OUTER_SET   SAV_DEATH       = 4
+OUTER_SET   SAV_WANDS       = 8
+OUTER_SET   SAV_POLYMORPH   = 16
+
+// Effect State
+
+OUTER_SET   PLAY_NOT_ATTACHED   = 0
+OUTER_SET   PLAY_ATTACHED       = 1
+
+////////////////////
+// Projectile
+
+OUTER_SET   PRJ_INAREAPA    = 158   // in area only party
+OUTER_SET   PRJ_INAREANP    = 159   // in area not party
+
+////////////////////
+// Creature
+
+OUTER_SET   CRE_SCRIPT_OVERRIDE = 0x0248
+OUTER_SET   CRE_SCRIPT_CLASS    = 0x0250
+OUTER_SET   CRE_SCRIPT_RACE     = 0x0258
+OUTER_SET   CRE_SCRIPT_GENERAL  = 0x0260
+OUTER_SET   CRE_SCRIPT_DEFAULT  = 0x0268
+OUTER_SET   CRE_DIALOG          = 0x02cc
+
+////////////////////
+// Opcode
+
+OUTER_SET   DAMAGE_CRUSH    = 0
+OUTER_SET   DAMAGE_ACID     = 65536
+OUTER_SET   DAMAGE_COLD     = 131072
+OUTER_SET   DAMAGE_ELEC     = 262144
+OUTER_SET   DAMAGE_FIRE     = 524288
+OUTER_SET   DAMAGE_PIERCE   = 1048576
+OUTER_SET   DAMAGE_POISON   = 2097152
+OUTER_SET   DAMAGE_MAGIC    = 4194304
+OUTER_SET   DAMAGE_MISSILE  = 8388608
+OUTER_SET   DAMAGE_SLASH    = 16777216
+
+OUTER_SET   IDS_FILE_EA         = 2
+OUTER_SET   IDS_FILE_GENERAL    = 3
+OUTER_SET   IDS_FILE_RACE       = 4
+OUTER_SET   IDS_FILE_CLASS      = 5
+OUTER_SET   IDS_FILE_SPECIFIC   = 6
+OUTER_SET   IDS_FILE_GENDER     = 7
+OUTER_SET   IDS_FILE_ALIGN      = 8
+OUTER_SET   IDS_FILE_KIT        = 9
+
+OUTER_SET   EA_ALLY             = 4
+OUTER_SET   GENERAL_UNDEAD      = 4
+
+OUTER_SET   OP_AC               = 0
+OUTER_SET   OP_ATTACK_PER_ROUND = 1
+OUTER_SET   OP_HP_DAMAGE        = 12
+OUTER_SET   OP_CURRENT_HP       = 17
+OUTER_SET   OP_MAX_HP           = 18
+OUTER_SET   OP_HORROR           = 24
+OUTER_SET   OP_RES_ACID         = 27
+OUTER_SET   OP_RES_COLD         = 28
+OUTER_SET   OP_RES_ELEC         = 29
+OUTER_SET   OP_RES_FIRE         = 30
+OUTER_SET   OP_RES_MAGIC_DAMAGE = 31
+OUTER_SET   OP_SAVE_DEATH       = 33
+OUTER_SET   OP_SAVE_WANDS       = 34
+OUTER_SET   OP_SAVE_POLYMORPH   = 35
+OUTER_SET   OP_SAVE_BREATH      = 36
+OUTER_SET   OP_SAVE_SPELL       = 37
+OUTER_SET   OP_STUN             = 45
+OUTER_SET   OP_GLOW_RGB         = 50
+OUTER_SET   OP_CREATURE_SUMMON  = 67
+OUTER_SET   OP_DAMAGE           = 73
+OUTER_SET   OP_RES_SLASH        = 86
+OUTER_SET   OP_RES_CRUSH        = 87
+OUTER_SET   OP_RES_PIERCE       = 88
+OUTER_SET   OP_RES_MISSILE      = 89
+OUTER_SET   OP_REGENERATION     = 98
+OUTER_SET   OP_MOVEMENT         = 126
+OUTER_SET   OP_LIGHTNING_EFFECT = 141
+OUTER_SET   OP_DISPLAY_ICON     = 142
+OUTER_SET   OP_CAST_SPELL       = 146
+OUTER_SET   OP_RES_MAGIC        = 166
+OUTER_SET   OP_THAC0_RANGE      = 167
+OUTER_SET   OP_GIVE_ABILITY     = 171
+OUTER_SET   OP_REMOVE_SPELL     = 172
+OUTER_SET   OP_RES_POISON       = 173
+OUTER_SET   OP_PLAY_SOUND       = 174
+OUTER_SET   OP_USE_EFF_FILE     = 177
+OUTER_SET   OP_CASTING_TIME     = 189
+OUTER_SET   OP_ATTACK_SPEED     = 190
+OUTER_SET   OP_PLAY_3D          = 215
+OUTER_SET   OP_CAST_SPELL_COND  = 232
+OUTER_SET   OP_PROFICIENCY      = 233
+OUTER_SET   OP_WING_BUFFET      = 235
+OUTER_SET   OP_SET_MELEE        = 248
+OUTER_SET   OP_SET_RANGE        = 249
+OUTER_SET   OP_GLOBAL_VAR       = 265
+OUTER_SET   OP_THAC0            = 278
+OUTER_SET   OP_THAC0_MELEE      = 284
+OUTER_SET   OP_DAMAGE_MELEE     = 285
+OUTER_SET   OP_DAMAGE_RANGE     = 286
+OUTER_SET   OP_HIGH_ABILITY     = 313
+OUTER_SET   OP_REMOVE_EFFECT    = 321
