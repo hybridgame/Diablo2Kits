@@ -1,3 +1,22 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DEFINE_ACTION_MACRO ClearArray
+BEGIN
+    ACTION_DEFINE_ARRAY d2Opcode    BEGIN "-1" "-1" "-1" "-1" "-1" "-1" "-1" "-1" "-1" "-1"
+        "-1" "-1" "-1" "-1" "-1" "-1" END
+    ACTION_DEFINE_ARRAY d2Param1    BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2Param2    BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2P1Step    BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2P2Step    BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2Dice      BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2DStep     BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2DiceSize  BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2DSStep    BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2Melee     BEGIN 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2Range     BEGIN 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2IDSFile   BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+    ACTION_DEFINE_ARRAY d2IDSEntry  BEGIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 END
+END
+
 DEFINE_PATCH_FUNCTION d2#patch_basic_info
 BEGIN
     WRITE_LONG   NAME1      d2Name

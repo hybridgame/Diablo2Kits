@@ -1,6 +1,6 @@
 BACKUP ~d2#bar/backup~
 AUTHOR ~HybridGame~
-VERSION "1.0.20190630"
+VERSION "1.0.20190702"
 
 LANGUAGE    ~Korean~
             ~Korean~
@@ -172,7 +172,7 @@ LAF d2#create_skill_point_spells INT_VAR d2MaxLevel = 19 END
 PRINT ~===== Creating Warcries skills.~
 
 // Howl
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_HORROR END
 LAF d2#create_buff_skill
     INT_VAR
@@ -192,7 +192,7 @@ LAF d2#create_buff_skill
 END
 
 // Shout
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_AC END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 2 END
 ACTION_DEFINE_ARRAY d2P1Step BEGIN 1 END
@@ -211,7 +211,7 @@ LAF d2#create_buff_skill
 END
 
 // Taunt
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_THAC0 OP_DAMAGE OP_LIGHTNING_EFFECT END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN "-2" "-2" END
 ACTION_DEFINE_ARRAY d2P1Step BEGIN "-1" "-1" END
@@ -223,12 +223,13 @@ LAF d2#create_buff_skill
         d2SkillLevel = 2
         duration = 12
         d2DurStep = 6
+        d2TabTarget = TAB_TARGET_CREATURE
     STR_VAR
         d2Skill = "04"
 END
 
 // Battle Cry
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_AC OP_DAMAGE OP_HORROR END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN "-2" "-2" END
 ACTION_DEFINE_ARRAY d2P1Step BEGIN "-1" "-1" END
@@ -250,7 +251,7 @@ LAF d2#create_buff_skill
 END
 
 // Battle Order
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_MAX_HP END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 112 END
 ACTION_DEFINE_ARRAY d2P1Step BEGIN 6 END
@@ -270,7 +271,7 @@ LAF d2#create_buff_skill
 END
 
 // War Cry
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_HP_DAMAGE OP_STUN END
 ACTION_DEFINE_ARRAY d2Param2 BEGIN DAMAGE_MAGIC END
 ACTION_DEFINE_ARRAY d2Dice BEGIN 4 END
@@ -291,7 +292,7 @@ LAF d2#create_buff_skill
 END
 
 // Battle Command
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_AC OP_THAC0 OP_DAMAGE OP_CASTING_TIME OP_ATTACK_SPEED 
     OP_SAVE_DEATH OP_SAVE_WANDS OP_SAVE_POLYMORPH OP_SAVE_BREATH OP_SAVE_SPELL END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 1 1 1 1 1 1 1 1 1 1 END
@@ -314,39 +315,39 @@ END
 PRINT ~===== Creating Combat Masteries skills.~
 
 // Two Weapon Style Mastery
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_PROFICIENCY END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 3 END
 ACTION_DEFINE_ARRAY d2Param2 BEGIN 114 END
 LAF d2#create_passive_skill INT_VAR d2Name = name11 d2Desc = desc11 STR_VAR d2Skill = "11" END
 
 // Two Handed Weapon Style Mastery
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_PROFICIENCY END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 2 END
 ACTION_DEFINE_ARRAY d2Param2 BEGIN 111 END
 LAF d2#create_passive_skill INT_VAR d2Name = name14 d2Desc = desc14 STR_VAR d2Skill = "14" END
 
 // Throwing Mastery
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_THAC0_RANGE OP_DAMAGE_RANGE END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 1 1 END
 LAF d2#create_passive_skill INT_VAR d2Name = name15 d2Desc = desc15 STR_VAR d2Skill = "15" END
 
 // Iron Skin
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_RES_SLASH OP_RES_CRUSH OP_RES_PIERCE OP_RES_MISSILE END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 8 8 8 8 END
 LAF d2#create_passive_skill INT_VAR d2Name = name18 d2Desc = desc18 STR_VAR d2Skill = "18" END
 
 // Increased Speed
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_MOVEMENT END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 1 END
 LAF d2#create_passive_skill INT_VAR d2Name = name19 d2Desc = desc19 STR_VAR d2Skill = "19" END
 
 // Natural Resistance
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_RES_ACID OP_RES_COLD OP_RES_ELEC OP_RES_FIRE END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 8 8 8 8 END
 LAF d2#create_passive_skill INT_VAR d2Name = name20 d2Desc = desc20 STR_VAR d2Skill = "20" END
@@ -356,7 +357,7 @@ LAF d2#create_passive_skill INT_VAR d2Name = name20 d2Desc = desc20 STR_VAR d2Sk
 PRINT ~===== Creating Combat Skills skills.~
 
 // Bash
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_WING_BUFFET OP_THAC0_MELEE OP_DAMAGE_MELEE END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 2 1 2 END
 ACTION_DEFINE_ARRAY d2P1Step BEGIN 0 1 1 END
@@ -377,7 +378,7 @@ LAF d2#create_combat_skill
 END
 
 // Double Swing
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_ATTACK_PER_ROUND OP_THAC0_MELEE END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 1 1 END
 ACTION_DEFINE_ARRAY d2P1Step BEGIN 0 1 END
@@ -391,7 +392,7 @@ LAF d2#create_combat_skill
 END
 
 // Double Throw
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_ATTACK_PER_ROUND OP_THAC0_RANGE END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 1 2 END
 ACTION_DEFINE_ARRAY d2P1Step BEGIN 0 2 END
@@ -405,7 +406,7 @@ LAF d2#create_combat_skill
 END
 
 // Stun
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_STUN OP_THAC0_MELEE END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 0 1 END
 ACTION_DEFINE_ARRAY d2P1Step BEGIN 0 1 END
@@ -426,7 +427,7 @@ LAF d2#create_combat_skill
 END
 
 // Concentration
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_AC OP_THAC0_MELEE OP_DAMAGE_MELEE END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 2 2 2 END
 ACTION_DEFINE_ARRAY d2P1Step BEGIN 1 2 1 END
@@ -441,7 +442,7 @@ LAF d2#create_combat_skill
 END
 
 // Frenzy
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_ATTACK_PER_ROUND OP_THAC0_MELEE OP_DAMAGE_MELEE OP_MOVEMENT END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 1 2 2 2 END
 ACTION_DEFINE_ARRAY d2P1Step BEGIN 0 2 1 1 END
@@ -456,7 +457,7 @@ END
 
 // Whirlwind
 ADD_PROJECTILE ~%d2Pro%/d2#1129.pro~
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_HP_DAMAGE OP_THAC0_MELEE END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 2 1 END
 ACTION_DEFINE_ARRAY d2P1Step BEGIN 1 1 END
@@ -477,7 +478,7 @@ LAF d2#create_combat_skill
 END
 
 // Berserk
-LAF d2#clear_array RET_ARRAY d2Opcode d2Param1 d2Param2 d2P1Step d2P2Step d2Dice d2DStep d2DiceSize d2DSStep END
+LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_HP_DAMAGE OP_AC OP_THAC0_MELEE OP_DAMAGE_MELEE END
 ACTION_DEFINE_ARRAY d2Param1 BEGIN 10 "-10" 3 "-6" END
 ACTION_DEFINE_ARRAY d2P1Step BEGIN 5 2 3 "-3" END
