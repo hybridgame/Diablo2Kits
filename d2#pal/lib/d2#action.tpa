@@ -7,8 +7,8 @@ BEGIN
 
     COMPILE ~%d2Baf%~
     COPY ~%d2Lib%/template.cre~ ~override/%d2Kit%.cre~
-        WRITE_ASCIIE CRE_SCRIPT_OVERRIDE    ~%d2Kit%~
-        WRITE_ASCIIE CRE_DIALOG             ~%d2Kit%~
+        WRITE_ASCIIE SCRIPT_OVERRIDE    ~%d2Kit%~
+        WRITE_ASCIIE DIALOG             ~%d2Kit%~
 
     OUTER_SET name = RESOLVE_STR_REF(@3)
     OUTER_FOR(skill = 71; skill < (71 + maxLevel); ++skill)
@@ -202,7 +202,8 @@ BEGIN
             BEGIN
                 header = i + 1
                 LPF SetSpellHeader  INT_VAR header skillLevel STR_VAR skill END
-                LPF AddOpcodeList INT_VAR i opcodeCount = effectCount header timing = TIMING_PERMANENT END
+                LPF AddOpcodeList INT_VAR i opcodeCount = effectCount header
+                    timing = TIMING_PERMANENT END
             END
     END
 END

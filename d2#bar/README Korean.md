@@ -20,6 +20,14 @@
 - 디아블로2의 스킬트리와 마찬가지로 선행 스킬을 익혀야한다. (예: 샤우트를 익히기 위해서는 하울을 먼저 익혀야 한다.)
 - 파이터의 하이 레벨 어빌리티를 익힐 수 없다.
 
+## 스킬트리:
+
+- 하울 > 샤우트 > 배틀 오더 > 배틀 코맨드
+- 하울 > 타운트 > 배틀 크라이 > 워 크라이
+- 무기 마스터리 > 아이언 스킨 > 내추럴 레지스턴스
+- 무기 마스터리 > 인크리즈드 스피드
+- 배쉬 > 스턴 > 컨센트레이트 > 훨윈드, 버서크
+- 배쉬 > 더블 스윙 > 더블 쓰로우 > 프렌지
 
 
 ------
@@ -167,7 +175,7 @@
 - 선택 가능: 5회
 - 선행 스킬: 무기 마스터리
 
-### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/increasespeed.bmp>) 인크리즈 스피드
+### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/barbarian/increasespeed.bmp>) 인크리즈드 스피드
 
 이동 속도가 1 빨라진다.
 
