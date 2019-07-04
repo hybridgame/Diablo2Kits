@@ -165,7 +165,7 @@ OUTER_SET desc20 = RESOLVE_STR_REF(@1150)
 
 // Skill point
 PRINT ~===== Creating skill points.~
-LAF d2#create_skill_point_spells INT_VAR d2MaxLevel = 19 END
+LAF CreateSkillSelecting END
 
 ///////////////////
 // Warcries

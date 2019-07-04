@@ -1,30 +1,14 @@
-DEFINE_ACTION_FUNCTION d2#create_skill_point_spells
-    INT_VAR
-        d2MaxLevel = 0
+DEFINE_ACTION_FUNCTION CreateSkillSelecting
 BEGIN
-    OUTER_SPRINT d2Point ~%d2Pre%00~
-    COPY ~%d2Lib%/skill.bam~ ~override/%d2Point%.bam~
-
     COMPILE ~%d2Baf%~
-    COPY ~%d2Lib%/template.cre~ ~override/%d2Kit%.cre~
-        WRITE_ASCIIE CRE_SCRIPT_OVERRIDE    ~%d2Kit%~
-        WRITE_ASCIIE CRE_DIALOG             ~%d2Kit%~
-
-    OUTER_FOR(skill = 71; skill < (71 + d2MaxLevel); ++skill)
-    BEGIN
-        OUTER_SPRINT d2Skill ~%d2Pre%%skill%~
-        COPY ~%d2Lib%/templat1.spl~ ~override/%d2Skill%.spl~
-            SAY NAME1 @3
-            WRITE_ASCIIE SPL_ICON       ~%d2Point%~ #8
-            WRITE_ASCIIE SPL_TAB1_ICON  ~%d2Point%~ #8
-            WRITE_BYTE   (SPL_TAB1 + SPL_TAB_TARGET) TAB_TARGET_SELF
-            LPF ADD_SPELL_EFFECT INT_VAR opcode = OP_REMOVE_SPELL
-                target = TARGET_CREATURE timing = TIMING_PERMANENT END
-            WRITE_ASCIIE SPL_TAB1_EFF1_RESOURCE ~%d2Skill%~ #8
-            LPF ADD_SPELL_EFFECT INT_VAR opcode = OP_CREATURE_SUMMON
-                target = TARGET_CREATURE duration = 60 parameter2 = 2 END
-            WRITE_ASCIIE SPL_TAB1_EFF2_RESOURCE ~%d2Kit%~ #8
-    END
+    
+    COPY ~%d2Lib%/template.cre~ ~override/%d2Kit%sp.cre~
+        WRITE_ASCIIE DIALOG             ~%d2Kit%sp~ #8
+        WRITE_ASCIIE SCRIPT_OVERRIDE    ~%d2Kit%sp~ #8
+    
+    COPY ~%d2Lib%/templat1.spl~ ~override/%d2Kit%.spl~
+        LPF ADD_SPELL_EFFECT INT_VAR target = TARGET_CREATURE timing = TIMING_AFTER
+            opcode = OP_SET_SCRIPT parameter2 = 5 STR_VAR resource = EVAL ~%d2Kit%~ END
 END
 
 DEFINE_ACTION_FUNCTION d2#create_learning_spell

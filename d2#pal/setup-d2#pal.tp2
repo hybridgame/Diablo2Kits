@@ -1,6 +1,6 @@
 BACKUP ~d2#pal/backup~
 AUTHOR ~HybridGame~
-VERSION "0.9.20190701"
+VERSION "1.0.20190704"
 
 LANGUAGE    ~Korean~
             ~Korean~
@@ -117,7 +117,7 @@ OUTER_SET d2TabCount = 4
 
 // Skill point
 PRINT ~===== Creating skill points.~
-LAF CreateSkillPoints INT_VAR maxLevel = 17 END
+LAF CreateSkillSelecting END
 
 ///////////////////
 // Defensive Auras
@@ -267,11 +267,11 @@ END
 // Fanaticism
 LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_ATTACK_PER_ROUND OP_THAC0 OP_DAMAGE END
-ACTION_DEFINE_ARRAY d2Param1 BEGIN 6 1 1 END
+ACTION_DEFINE_ARRAY d2Param1 BEGIN 6 1 2 END
 ACTION_DEFINE_ARRAY d2P1Step BEGIN 0 1 1 END
 LAF CreateBuffAura
     INT_VAR name = RESOLVE_STR_REF(@1219) desc = RESOLVE_STR_REF(@1249)
-            skillLevel = 6 doubleOpcode = OP_DAMAGE
+            skillLevel = 6
     STR_VAR skill = "19"
 END
 

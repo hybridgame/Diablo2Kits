@@ -1,14 +1,307 @@
 IF
-    Detect(Lastsummonerof(Myself))
-    NumTimesTalkedTo(0)
+	HotKey(X)
+    Global("D2#BARSkillPoint","GLOBAL",0)
 THEN
-    RESPONSE #100
-        StartDialogueNoSet(Lastsummonerof(Myself))
+	RESPONSE #100
+		DisplayString(Myself, @3)
 END
 
 IF
-    NumTimesTalkedTo(1)
+	HotKey(X)
+	Global("D2#BARShowDialog","GLOBAL",0)
+    Global("D2#BARSkillPoint","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("D2#BARShowDialog","GLOBAL",1)
+        DisplayString(Myself, @11)
+		CreateCreatureObjectEffect("D2#BARSP","",Myself)
+END
+
+IF
+	HotKey(X)
+	Global("D2#BARShowDialog","GLOBAL",0)
+    Global("D2#BARSkillPoint","GLOBAL",2)
+THEN
+	RESPONSE #100
+		SetGlobal("D2#BARShowDialog","GLOBAL",1)
+        DisplayString(Myself, @12)
+		CreateCreatureObjectEffect("D2#BARSP","",Myself)
+END
+
+IF
+	HotKey(X)
+	Global("D2#BARShowDialog","GLOBAL",0)
+    Global("D2#BARSkillPoint","GLOBAL",3)
+THEN
+	RESPONSE #100
+		SetGlobal("D2#BARShowDialog","GLOBAL",1)
+        DisplayString(Myself, @13)
+		CreateCreatureObjectEffect("D2#BARSP","",Myself)
+END
+
+IF
+	HotKey(X)
+	Global("D2#BARShowDialog","GLOBAL",0)
+    Global("D2#BARSkillPoint","GLOBAL",4)
+THEN
+	RESPONSE #100
+		SetGlobal("D2#BARShowDialog","GLOBAL",1)
+        DisplayString(Myself, @14)
+		CreateCreatureObjectEffect("D2#BARSP","",Myself)
+END
+
+IF
+	HotKey(X)
+	Global("D2#BARShowDialog","GLOBAL",0)
+    Global("D2#BARSkillPoint","GLOBAL",5)
+THEN
+	RESPONSE #100
+		SetGlobal("D2#BARShowDialog","GLOBAL",1)
+        DisplayString(Myself, @15)
+		CreateCreatureObjectEffect("D2#BARSP","",Myself)
+END
+
+IF
+	HotKey(X)
+	Global("D2#BARShowDialog","GLOBAL",0)
+    Global("D2#BARSkillPoint","GLOBAL",6)
+THEN
+	RESPONSE #100
+		SetGlobal("D2#BARShowDialog","GLOBAL",1)
+        DisplayString(Myself, @16)
+		CreateCreatureObjectEffect("D2#BARSP","",Myself)
+END
+
+IF
+	HotKey(X)
+	Global("D2#BARShowDialog","GLOBAL",0)
+    Global("D2#BARSkillPoint","GLOBAL",7)
+THEN
+	RESPONSE #100
+		SetGlobal("D2#BARShowDialog","GLOBAL",1)
+        DisplayString(Myself, @17)
+		CreateCreatureObjectEffect("D2#BARSP","",Myself)
+END
+
+IF
+	HotKey(X)
+	Global("D2#BARShowDialog","GLOBAL",0)
+    Global("D2#BARSkillPoint","GLOBAL",8)
+THEN
+	RESPONSE #100
+		SetGlobal("D2#BARShowDialog","GLOBAL",1)
+        DisplayString(Myself, @18)
+		CreateCreatureObjectEffect("D2#BARSP","",Myself)
+END
+
+IF
+	HotKey(X)
+	Global("D2#BARShowDialog","GLOBAL",0)
+    Global("D2#BARSkillPoint","GLOBAL",9)
+THEN
+	RESPONSE #100
+		SetGlobal("D2#BARShowDialog","GLOBAL",1)
+        DisplayString(Myself, @19)
+		CreateCreatureObjectEffect("D2#BARSP","",Myself)
+END
+
+IF
+	HotKey(X)
+	Global("D2#BARShowDialog","GLOBAL",0)
+    GlobalGT("D2#BARSkillPoint","GLOBAL",9)
+THEN
+	RESPONSE #100
+		SetGlobal("D2#BARShowDialog","GLOBAL",1)
+        DisplayString(Myself, @20)
+		CreateCreatureObjectEffect("D2#BARSP","",Myself)
+END
+
+IF
+    Level(Myself,1)
+    GlobalLT("D2#BARLevel","GLOBAL",1)
 THEN
     RESPONSE #100
-        DestroySelf()
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,2)
+    GlobalLT("D2#BARLevel","GLOBAL",2)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,3)
+    GlobalLT("D2#BARLevel","GLOBAL",3)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,4)
+    GlobalLT("D2#BARLevel","GLOBAL",4)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,5)
+    GlobalLT("D2#BARLevel","GLOBAL",5)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,6)
+    GlobalLT("D2#BARLevel","GLOBAL",6)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,7)
+    GlobalLT("D2#BARLevel","GLOBAL",7)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,8)
+    GlobalLT("D2#BARLevel","GLOBAL",8)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,9)
+    GlobalLT("D2#BARLevel","GLOBAL",9)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,10)
+    GlobalLT("D2#BARLevel","GLOBAL",10)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,11)
+    GlobalLT("D2#BARLevel","GLOBAL",11)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,12)
+    GlobalLT("D2#BARLevel","GLOBAL",12)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,13)
+    GlobalLT("D2#BARLevel","GLOBAL",13)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,14)
+    GlobalLT("D2#BARLevel","GLOBAL",14)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,15)
+    GlobalLT("D2#BARLevel","GLOBAL",15)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,16)
+    GlobalLT("D2#BARLevel","GLOBAL",16)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,17)
+    GlobalLT("D2#BARLevel","GLOBAL",17)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,18)
+    GlobalLT("D2#BARLevel","GLOBAL",18)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
+END
+
+IF
+    Level(Myself,19)
+    GlobalLT("D2#BARLevel","GLOBAL",19)
+THEN
+    RESPONSE #100
+    	IncrementGlobal("D2#BARLevel","GLOBAL",1)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",1)
+        Continue()
 END

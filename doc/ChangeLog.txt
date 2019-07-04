@@ -1,0 +1,29 @@
+## 2019-07-04
+
+### Common
+
+* Change: changed kit description.
+
+- remove: removed skill point spells.
+
++ add: can select a skill using the skill point when you press the X key.
+
+### D2 Paladin
+
++ add: added aura background animation
+
+* change: changed max fanaticism damage from 8 to 5
+* change: applied aura only to D2 Paladin
+
+## 2019-07-03
+
+### D2 Barbarian
+
++ Add: added skill tree to kit description.
+
+### D2 Paladin
+
+* buggfix: bug fixed that Holly Bolt recovery does not apply to party members.
+
++ Add: added skill tree to kit description.
+

@@ -1,0 +1,62 @@
+IF
+	See(Player1)
+	Kit(Player1,D2#BAR)
+    NumTimesTalkedTo(0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player1)
+END
+
+IF
+	See(Player2)
+	Kit(Player2,D2#BAR)
+    NumTimesTalkedTo(0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player2)
+END
+
+IF
+	See(Player3)
+	Kit(Player3,D2#BAR)
+    NumTimesTalkedTo(0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player3)
+END
+
+IF
+	See(Player4)
+	Kit(Player4,D2#BAR)
+    NumTimesTalkedTo(0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player4)
+END
+
+IF
+	See(Player5)
+	Kit(Player5,D2#BAR)
+    NumTimesTalkedTo(0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player5)
+END
+
+IF
+	See(Player6)
+	Kit(Player6,D2#BAR)
+    NumTimesTalkedTo(0)
+THEN
+	RESPONSE #100
+		StartDialogNoSet(Player6)
+END
+
+IF
+    !NumTimesTalkedTo(0)
+THEN
+	RESPONSE #100
+        SetGlobal("D2#BARShowDialog","GLOBAL",0)
+        IncrementGlobal("D2#BARSkillPoint","GLOBAL",-1)
+		DestroySelf()
+END

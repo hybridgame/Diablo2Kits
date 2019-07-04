@@ -7,7 +7,7 @@
 
 ## 장점:
 
-- 1레벨부터 19레벨까지 레벨마다 하나씩 얻는 스킬 포인트를 이용하여 디아블로2의 스킬을 선택할 수 있다.
+- 1레벨부터 17레벨까지 레벨마다 하나씩 얻는 스킬 포인트를 이용하여 디아블로2의 스킬을 선택할 수 있다. (단축키 X)
 - 하이 레벨 어빌리티로 디아블로2의 스킬을 선택할 수 있다.
 
 ## 단점:
@@ -18,10 +18,10 @@
 
 ## 스킬트리:
 
-- 마이트 > 블레이스 에임 > 컨센트레이션 > 파나티시즘
-- 마이트 > 홀리 파이어 > 홀리 프리즈 > 홀리 쇼크 > 컨빅션
-- 새크리파이스 > 질 > 벤전스
-- 홀리 볼트 > 블레스드 해머 > 홀리 쉴드, 피스트 오브 더 해븐
+- 마이트(1) -> 블레이스 에임(8) -> 컨센트레이션(12) -> 파나티시즘(HLA)
+- 마이트(1) -> 홀리 파이어(4) -> 홀리 프리즈(12) -> 홀리 쇼크(15) -> 컨빅션(HLA)
+- 새크리파이스(1) -> 질(8) -> 벤전스(12)
+- 홀리 볼트(4) -> 블레스드 해머(12) -> 홀리 쉴드(16), 피스트 오브 더 해븐(HLA)
 
 
 ------
@@ -32,10 +32,10 @@
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/prayer.jpg>) 프레이어
 
-파티원의 체력을 천천히 회복시킨다.
+체력을 천천히 회복시킨다.
 
 - 레벨: 1
-- 대상: 파티원 전체
+- 대상: 시전자
 - 선택 가능: 1회
 - 효과
   - 01레벨: 1 HP/라운드
@@ -45,10 +45,10 @@
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/resisfire.jpg>) 레지스트 파이어
 
-파티원의 화염 저항을 높인다.
+화염 저항을 높인다.
 
 - 레벨: 1
-- 대상: 파티원 전체
+- 대상: 시전자
 - 선택 가능: 1회
 - 효과
   - 01레벨: 화염 저항 +20%
@@ -58,10 +58,10 @@
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/sacrifice.jpg>) 레지스트 콜드
 
-파티원의 냉기 저항을 높인다.
+냉기 저항을 높인다.
 
 - 레벨: 4
-- 대상: 파티원 전체
+- 대상: 시전자
 - 선택 가능: 1회
 - 효과
   - 04레벨: 냉기 저항 +20%
@@ -71,10 +71,10 @@
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/resislight.jpg>) 레지스트 라이트닝
 
-파티원의 전기 저항을 높인다.
+전기 저항을 높인다.
 
 - 레벨: 8
-- 대상: 파티원 전체
+- 대상: 시전자
 - 선택 가능: 1회
 - 효과
   - 08레벨: 전기 저항 +20%
@@ -84,10 +84,10 @@
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/defiance.jpg>) 디파이언스
 
-파티원의 방어력을 높인다.
+방어력을 높인다.
 
 - 레벨: 4
-- 대상: 파티원 전체
+- 대상: 시전자
 - 선택 가능: 1회
 - 효과
   - 04레벨: 방어력 +1
@@ -97,10 +97,10 @@
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/vigor.jpg>) 비거
 
-파티원의 이동 속도를 높인다.
+이동 속도를 높인다.
 
 - 레벨: 12
-- 대상: 파티원 전체
+- 대상: 시전자
 - 선택 가능: 1회
 - 효과
   - 12레벨: 이동 속도 +1
@@ -110,10 +110,10 @@
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/salvation.jpg>) 샐베이션
 
-파티원의 원소 저항을 높인다.
+원소 저항을 높인다.
 
 - 레벨: HLA
-- 대상: 파티원 전체
+- 대상: 시전자
 - 선택 가능: 1회
 - 효과
   - 18레벨: 원소 저항 +20%
@@ -127,10 +127,10 @@
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/might.jpg>) 마이트
 
-파티원의 공격력을 높인다.
+공격력을 높인다.
 
 - 레벨: 1
-- 대상: 파티원 전체
+- 대상: 시전자
 - 선택 가능: 1회
 - 효과
   - 01레벨: 공격력 +2
@@ -140,7 +140,7 @@
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/holyfire.jpg>) 홀리 파이어
 
-시전자의 공격에 화염 공격을 추가하고 주변 적에게 화염 피해를 준다.
+공격에 화염 공격을 추가하고 주변 적에게 화염 피해를 준다.
 
 - 레벨: 4
 - 대상: 특별
@@ -154,10 +154,10 @@
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/blessedaim.jpg>) 블레스드 에임
 
-파티원의 공격력을 높인다.
+공격력을 높인다.
 
 - 레벨: 8
-- 대상: 파티원 전체
+- 대상: 시전자
 - 선택 가능: 1회
 - 선행 스킬: 마이트
 - 효과
@@ -168,10 +168,10 @@
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/concentration.jpg>) 컨센트레이션
 
-파티원의 공격력을 높인다.
+공격력을 높인다.
 
 - 레벨: 12
-- 대상: 파티원 전체
+- 대상: 시전자
 - 선택 가능: 1회
 - 선행 스킬: 블레스드 에임
 - 효과
@@ -182,7 +182,7 @@
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/holyfreeze.jpg>) 홀리 프리즈
 
-시전자의 공격에 냉기 공격을 추가하고 주변 적에게 냉기 피해를 준다.
+공격에 냉기 공격을 추가하고 주변 적에게 냉기 피해를 준다.
 
 - 레벨: 12
 - 대상: 특별
@@ -196,7 +196,7 @@
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/holyshock.jpg>) 홀리 쇼크
 
-시전자의 공격에 전기 공격을 추가하고 주변 적에게 전기 피해를 준다.
+공격에 전기 공격을 추가하고 주변 적에게 전기 피해를 준다.
 
 - 레벨: 15
 - 대상: 특별
@@ -210,17 +210,17 @@
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/fanaticism.jpg>) 파나티시즘
 
-파티원의 공회가 0.5회 추가되고 공격력을 높인다.
+공회가 0.5회 추가되고 공격력을 높인다.
 
 - 레벨: HLA
-- 대상: 파티원 전체
+- 대상: 시전자
 - 선택 가능: 1회
 - 선행 스킬: 컨센트레이션
 - 효과
-  - 18레벨: 아군의 공격력 +1, 시전자의 공격력 +2, 아군/시전자의 THAC0 +1
-  - 21레벨: 아군의 공격력 +2, 시전자의 공격력 +4, 아군/시전자의 THAC0 +2
-  - 24레벨: 아군의 공격력 +3, 시전자의 공격력 +6, 아군/시전자의 THAC0 +3
-  - 27레벨: 아군의 공격력 +4, 시전자의 공격력 +8, 아군/시전자의 THAC0 +4
+  - 18레벨: 공격력 +2, THAC0 +1
+  - 21레벨: 공격력 +3, THAC0 +2
+  - 24레벨: 공격력 +4, THAC0 +3
+  - 27레벨: 공격력 +5, THAC0 +4
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/conviction.jpg>) 컨빅션
 
@@ -229,7 +229,7 @@
 - 레벨: HLA
 - 대상: 오라 범위내 적
 - 선택 가능: 1회
-- 선행 스킬: 홀리 프리즈
+- 선행 스킬: 홀리 쇼크
 - 효과
   - 18레벨: 15피트 범위 적의 방어력 -2, 원소 저항 -12%
   - 21레벨: 20피트 범위 적의 방어력 -3, 원소 저항 -18%

@@ -218,16 +218,6 @@ OUTER_SET   PRJ_INAREAPA    = 158   // in area only party
 OUTER_SET   PRJ_INAREANP    = 159   // in area not party
 
 ////////////////////
-// Creature
-
-OUTER_SET   CRE_SCRIPT_OVERRIDE = 0x0248
-OUTER_SET   CRE_SCRIPT_CLASS    = 0x0250
-OUTER_SET   CRE_SCRIPT_RACE     = 0x0258
-OUTER_SET   CRE_SCRIPT_GENERAL  = 0x0260
-OUTER_SET   CRE_SCRIPT_DEFAULT  = 0x0268
-OUTER_SET   CRE_DIALOG          = 0x02cc
-
-////////////////////
 // Opcode
 
 OUTER_SET   DAMAGE_CRUSH    = 0
@@ -259,6 +249,7 @@ OUTER_SET   OP_STUN             = 45
 OUTER_SET   OP_GLOW_RGB         = 50
 OUTER_SET   OP_CREATURE_SUMMON  = 67
 OUTER_SET   OP_DAMAGE           = 73
+OUTER_SET   OP_SET_SCRIPT       = 82
 OUTER_SET   OP_RES_SLASH        = 86
 OUTER_SET   OP_RES_CRUSH        = 87
 OUTER_SET   OP_RES_PIERCE       = 88

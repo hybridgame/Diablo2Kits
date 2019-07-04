@@ -136,12 +136,13 @@ BEGIN
     LPF SetSpellHeader INT_VAR header skillLevel target = TAB_TARGET_SELF STR_VAR skill END
     FOR(k = 0; k < d2AuraSkillCount; ++k)
     BEGIN
-        LPF EffRemoveEffect INT_VAR header target = TARGET_PARTY
-            STR_VAR skill = EVAL $d2AuraSkill(~%k%~) END
+        LPF EffRemoveEffect INT_VAR header target STR_VAR skill = EVAL $d2AuraSkill(~%k%~) END
     END
     LPF RefreshSkill INT_VAR header STR_VAR skill END
     LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_DISPLAY_ICON target timing = TIMING_AFTER
         parameter2 = ~%spellId%~ END
+    LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_PLAY_3D target timing = TIMING_AFTER
+        parameter2 = 1 STR_VAR resource = "SPTURNI2" END
 END
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
