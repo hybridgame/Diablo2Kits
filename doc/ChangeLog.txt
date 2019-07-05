@@ -1,3 +1,9 @@
+## 2019-07-05
+
+### D2 Barbarian
+
+* fix: fixed Battle order text & Frenzy text
+
 ## 2019-07-04
 
 ### Common
@@ -23,7 +29,7 @@
 
 ### D2 Paladin
 
-* buggfix: bug fixed that Holly Bolt recovery does not apply to party members.
+* fix: bug fixed that Holly Bolt recovery does not apply to party members.
 
 + Add: added skill tree to kit description.
 
