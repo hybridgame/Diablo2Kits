@@ -84,10 +84,7 @@ IF ~NumTimesTalkedTo(0)~ THEN BEGIN selectSkill
         DO ~ActionOverride(LastSeenBy(Myself),IncrementGlobal("D2#1217","GLOBAL",1))
             ApplySpellRES("D2#1217L",LastSeenBy(Myself))~ EXIT
 
-    // Sacrifice
-    IF ~Global("D2#1221","GLOBAL",0)~ THEN REPLY @1221
-        DO ~ActionOverride(LastSeenBy(Myself),IncrementGlobal("D2#1221","GLOBAL",1))
-            ApplySpellRES("D2#1221L",LastSeenBy(Myself))~ EXIT
+    // Combat Skill
 
     // Holy Bolt
     IF ~LevelGT(LastSeenBy(Myself),3)~ THEN REPLY @1223
@@ -95,8 +92,7 @@ IF ~NumTimesTalkedTo(0)~ THEN BEGIN selectSkill
             ApplySpellRES("D2#1223L",LastSeenBy(Myself))~ EXIT
 
     // Zeal
-    IF ~Global("D2#1221","GLOBAL",1)
-        Global("D2#1224","GLOBAL",0)
+    IF ~Global("D2#1224","GLOBAL",0)
         LevelGT(LastSeenBy(Myself),7)~ THEN REPLY @1224
         DO ~ActionOverride(LastSeenBy(Myself),IncrementGlobal("D2#1224","GLOBAL",1))
             ApplySpellRES("D2#1224L",LastSeenBy(Myself))~ EXIT

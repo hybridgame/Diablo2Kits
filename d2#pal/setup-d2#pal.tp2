@@ -289,18 +289,6 @@ END
 // Combat Skills
 PRINT ~===== Creating Combat Skills skills.~
 
-// Sacrifice
-LAM ClearArray
-ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_CURRENT_HP OP_THAC0_MELEE OP_DAMAGE_MELEE END
-ACTION_DEFINE_ARRAY d2Param1 BEGIN "-8" 2 6 END
-ACTION_DEFINE_ARRAY d2P1Step BEGIN 0 1 3 END
-ACTION_DEFINE_ARRAY d2Param2 BEGIN 2 0 0 END
-LAF CreateCombatSkill
-    INT_VAR name = RESOLVE_STR_REF(@1221) desc = RESOLVE_STR_REF(@1251)
-        skillLevel = 1 effectCount = 1 setTarget = TARGET_SELF
-    STR_VAR skill = "21"
-END
-
 // Holy Bolt
 LAM ClearArray
 ACTION_DEFINE_ARRAY d2Opcode BEGIN OP_HP_DAMAGE OP_CURRENT_HP END
