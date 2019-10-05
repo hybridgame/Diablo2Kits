@@ -1,6 +1,6 @@
 BACKUP ~d2#bar/backup~
 AUTHOR ~HybridGame~
-VERSION "1.01.20190705"
+VERSION "20191005"
 
 LANGUAGE    ~Korean~
             ~Korean~
@@ -10,7 +10,7 @@ LANGUAGE    ~Korean~
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // D2 Barbarian
 
-BEGIN ~D2 Barbarian kit for Fighter~
+BEGIN ~D2 Barbarian kit for Fighter~ DESIGNATED 0
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee~ @1
 
 INCLUDE "d2#bar/lib/fl#add_kit_ee.tpa"
@@ -493,3 +493,9 @@ LAF d2#create_combat_skill
         d2Skill = "30"
         d2SelfSound = "D2#1130"
 END
+
+BEGIN "D2 Barbarian Korgan"
+REQUIRE_COMPONENT "setup-d2#bar.tp2" "0" @4
+REQUIRE_PREDICATE GAME_IS ~bg2ee~ @1
+
+EXTEND_BOTTOM ~KORGAN.BCS~ ~d2#bar/Korgan/korgan.baf~

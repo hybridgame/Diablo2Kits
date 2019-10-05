@@ -1,3 +1,13 @@
+## 2019-10-05
+
+### D2 Barbarian
+
++ add: D2 Barbarian Korgan
+
+### D2 Paladin
+
++ add: D2 Paladin Keldorn
+
 ## 2019-07-10
 
 ### D2 Paladin

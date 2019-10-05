@@ -1,0 +1,56 @@
+IF
+	Global("BD_JOINXP","LOCALS",1)
+	Level(Myself,8)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("BD_JOINXP","LOCALS",2)
+		ChangeStat(Myself,MAXHITPOINTS,136,SET)
+		SetInterrupt(TRUE)
+END
+
+IF
+	Global("BD_JOINXP","LOCALS",1)
+	Level(Myself,9)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("BD_JOINXP","LOCALS",2)
+		ChangeStat(Myself,MAXHITPOINTS,153,SET)
+		SetInterrupt(TRUE)
+END
+
+IF
+	Global("BD_JOINXP","LOCALS",1)
+	Level(Myself,11)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("BD_JOINXP","LOCALS",2)
+		ChangeStat(Myself,MAXHITPOINTS,159,SET)
+		SetInterrupt(TRUE)
+END
+
+IF
+	Global("BD_JOINXP","LOCALS",1)
+	Level(Myself,12)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("BD_JOINXP","LOCALS",2)
+		ChangeStat(Myself,MAXHITPOINTS,162,SET)
+		SetInterrupt(TRUE)
+END
+
+IF
+	Global("BD_JOINXP","LOCALS",2)
+THEN
+	RESPONSE #100
+		SetInterrupt(FALSE)
+		SetGlobal("BD_JOINXP","LOCALS",3)
+		ChangeStat(Myself,STR,19,SET)
+		ChangeStat(Myself,DEX,17,SET)
+		ChangeStat(Myself,CON,20,SET)
+		AddKit(d2#bar)
+		SetInterrupt(TRUE)
+END
