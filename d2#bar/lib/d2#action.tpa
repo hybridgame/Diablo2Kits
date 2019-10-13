@@ -1,11 +1,7 @@
-DEFINE_ACTION_FUNCTION CreateSkillSelecting
+DEFINE_ACTION_FUNCTION d2#create_skill_dialog
 BEGIN
     COMPILE ~%d2Baf%~
-    
-    COPY ~%d2Lib%/template.cre~ ~override/%d2Kit%sp.cre~
-        WRITE_ASCIIE DIALOG             ~%d2Kit%sp~ #8
-        WRITE_ASCIIE SCRIPT_OVERRIDE    ~%d2Kit%sp~ #8
-    
+  
     COPY ~%d2Lib%/templat1.spl~ ~override/%d2Kit%.spl~
         LPF ADD_SPELL_EFFECT INT_VAR target = TARGET_CREATURE timing = TIMING_AFTER
             opcode = OP_SET_SCRIPT parameter2 = 5 STR_VAR resource = EVAL ~%d2Kit%~ END

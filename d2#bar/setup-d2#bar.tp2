@@ -1,6 +1,6 @@
 BACKUP ~d2#bar/backup~
 AUTHOR ~HybridGame~
-VERSION "20191005"
+VERSION "20191013"
 
 LANGUAGE    ~Korean~
             ~Korean~
@@ -163,9 +163,7 @@ OUTER_SET desc20 = RESOLVE_STR_REF(@1150)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Skill point
-PRINT ~===== Creating skill points.~
-LAF CreateSkillSelecting END
+LAF d2#create_skill_dialog END
 
 ///////////////////
 // Warcries

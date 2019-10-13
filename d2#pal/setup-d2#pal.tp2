@@ -1,6 +1,6 @@
 BACKUP ~d2#pal/backup~
 AUTHOR ~HybridGame~
-VERSION "20191005"
+VERSION "20191013"
 
 LANGUAGE    ~Korean~
             ~Korean~
@@ -115,9 +115,7 @@ OUTER_SET d2TabCount = 4
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Skill point
-PRINT ~===== Creating skill points.~
-LAF CreateSkillSelecting END
+LAF d2#create_skill_dialog END
 
 ///////////////////
 // Defensive Auras
