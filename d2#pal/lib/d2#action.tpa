@@ -1,4 +1,4 @@
-DEFINE_ACTION_FUNCTION d2#create_skill_dialog
+DEFINE_ACTION_FUNCTION d2#CreateSkillDialog
 BEGIN
     COMPILE ~%d2Baf%~
   
