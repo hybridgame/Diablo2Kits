@@ -11,7 +11,7 @@ LANGUAGE    ~Korean~
 // D2 Paladin
 
 BEGIN ~D2 Paladin kit for Paladin~ DESIGNATED 0
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee~ @1
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet~ @1
 
 INCLUDE "d2#pal/lib/fl#add_kit_ee.tpa"
 INCLUDE "d2#pal/lib/weidu.tpa"
@@ -369,6 +369,6 @@ END
 
 BEGIN "D2 Paladin Keldorn"
 REQUIRE_COMPONENT "setup-d2#pal.tp2" "0" @5
-REQUIRE_PREDICATE GAME_IS ~bg2ee~ @1
+REQUIRE_PREDICATE GAME_IS ~bg2ee eet~ @1
 
 EXTEND_BOTTOM ~KELDORN.BCS~ ~d2#pal/Keldorn/keldorn.baf~
