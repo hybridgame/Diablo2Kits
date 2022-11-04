@@ -159,7 +159,7 @@ BEGIN
                 resOffset += EFF_SIZE
             END
 
-            //LPF d2#refresh_skill RET resOffset END
+            LPF d2#refresh_skill RET resOffset END
 
             // Display icon
             LPF ADD_SPELL_EFFECT INT_VAR header opcode = OP_DISPLAY_ICON target timing
