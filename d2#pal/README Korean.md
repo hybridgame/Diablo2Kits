@@ -37,10 +37,10 @@
 - 대상: 시전자
 - 선택 가능: 1회
 - 효과
-  - 01레벨: 1 HP/라운드
-  - 04레벨: 2 HP/라운드
-  - 08레벨: 3 HP/라운드
-  - 12레벨: 4 HP/라운드
+  - 01레벨: 1HP / 4초
+  - 04레벨: 1HP / 3초
+  - 08레벨: 1HP / 2초
+  - 12레벨: 1HP / 1초
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/resisfire.jpg>) 레지스트 파이어
 
@@ -51,9 +51,9 @@
 - 선택 가능: 1회
 - 효과
   - 01레벨: 화염 저항 +20%
-  - 04레벨: 화염 저항 +30%
-  - 08레벨: 화염 저항 +40%
-  - 12레벨: 화염 저항 +50%
+  - 04레벨: 화염 저항 +40%
+  - 08레벨: 화염 저항 +60%
+  - 12레벨: 화염 저항 +80%
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/sacrifice.jpg>) 레지스트 콜드
 
@@ -64,9 +64,9 @@
 - 선택 가능: 1회
 - 효과
   - 04레벨: 냉기 저항 +20%
-  - 08레벨: 냉기 저항 +30%
-  - 12레벨: 냉기 저항 +40%
-  - 15레벨: 냉기 저항 +50%
+  - 08레벨: 냉기 저항 +40%
+  - 12레벨: 냉기 저항 +60%
+  - 15레벨: 냉기 저항 +80%
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/resislight.jpg>) 레지스트 라이트닝
 
@@ -77,9 +77,9 @@
 - 선택 가능: 1회
 - 효과
   - 08레벨: 전기 저항 +20%
-  - 12레벨: 전기 저항 +30%
-  - 15레벨: 전기 저항 +40%
-  - 18레벨: 전기 저항 +50%
+  - 12레벨: 전기 저항 +40%
+  - 15레벨: 전기 저항 +60%
+  - 18레벨: 전기 저항 +80%
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/defiance.jpg>) 디파이언스
 
@@ -89,10 +89,10 @@
 - 대상: 시전자
 - 선택 가능: 1회
 - 효과
-  - 04레벨: 방어력 +1
-  - 08레벨: 방어력 +2
-  - 12레벨: 방어력 +3
-  - 15레벨: 방어력 +4
+  - 04레벨: 방어력 +2
+  - 08레벨: 방어력 +4
+  - 12레벨: 방어력 +6
+  - 15레벨: 방어력 +8
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/vigor.jpg>) 비거
 
@@ -102,10 +102,10 @@
 - 대상: 시전자
 - 선택 가능: 1회
 - 효과
-  - 12레벨: 이동 속도 +1
-  - 15레벨: 이동 속도 +2
-  - 18레벨: 이동 속도 +3
-  - 21레벨: 이동 속도 +4
+  - 12레벨: 이동 속도 +2
+  - 15레벨: 이동 속도 +4
+  - 18레벨: 이동 속도 +6
+  - 21레벨: 이동 속도 +8
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/salvation.jpg>) 샐베이션
 
@@ -115,10 +115,10 @@
 - 대상: 시전자
 - 선택 가능: 1회
 - 효과
-  - 18레벨: 원소 저항 +20%
+  - 18레벨: 원소 저항 +15%
   - 21레벨: 원소 저항 +30%
-  - 24레벨: 원소 저항 +40%
-  - 27레벨: 원소 저항 +50%
+  - 24레벨: 원소 저항 +45%
+  - 27레벨: 원소 저항 +60%
 
 ------
 
@@ -133,9 +133,9 @@
 - 선택 가능: 1회
 - 효과
   - 01레벨: 공격력 +2
-  - 04레벨: 공격력 +3
-  - 08레벨: 공격력 +4
-  - 12레벨: 공격력 +5
+  - 04레벨: 공격력 +4
+  - 08레벨: 공격력 +6
+  - 12레벨: 공격력 +8
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/holyfire.jpg>) 홀리 파이어
 
@@ -160,10 +160,10 @@
 - 선택 가능: 1회
 - 선행 스킬: 마이트
 - 효과
-  - 08레벨: THAC0 +4
+  - 08레벨: THAC0 +3
   - 12레벨: THAC0 +6
-  - 15레벨: THAC0 +8
-  - 18레벨: THAC0 +10
+  - 15레벨: THAC0 +9
+  - 18레벨: THAC0 +12
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/concentration.jpg>) 컨센트레이션
 
@@ -175,9 +175,9 @@
 - 선행 스킬: 블레스드 에임
 - 효과
   - 12레벨: 공격력 +4
-  - 15레벨: 공격력 +5
-  - 18레벨: 공격력 +6
-  - 21레벨: 공격력 +7
+  - 15레벨: 공격력 +6
+  - 18레벨: 공격력 +8
+  - 21레벨: 공격력 +10
 
 ### ![](<https://raw.githubusercontent.com/hybridgame/Diablo2Kits/master/image/paladin/holyfreeze.jpg>) 홀리 프리즈
 
