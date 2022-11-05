@@ -133,7 +133,7 @@ DEFINE_PATCH_FUNCTION PatchAura
         header
 BEGIN
     header = i + 1
-    LPF SetSpellHeader INT_VAR header skillLevel target = TAB_TARGET_SELF_KEEP STR_VAR skill END
+    LPF SetSpellHeader INT_VAR header skillLevel target = TAB_TARGET_SELF STR_VAR skill END
     FOR(k = 0; k < d2AuraSkillCount; ++k)
     BEGIN
         LPF EffRemoveEffect INT_VAR header target STR_VAR skill = EVAL $d2AuraSkill(~%k%~) END

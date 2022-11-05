@@ -161,7 +161,7 @@ BEGIN
         FOR (i = 0; i < d2TabCount; ++i)
         BEGIN
             header = i + 1
-            LPF SetSpellHeader  INT_VAR header target = TAB_TARGET_SELF_KEEP skillLevel STR_VAR skill END
+            LPF SetSpellHeader  INT_VAR header target = TAB_TARGET_SELF skillLevel STR_VAR skill END
             FOR(k = 0; k < d2CombatSkillCount; ++k)
             BEGIN
                 LPF EffRemoveEffect INT_VAR header target = TARGET_PARTY

@@ -147,7 +147,7 @@ BEGIN
         FOR (i = 0; i < 4; ++i)
         BEGIN
             header = i + 1
-            LPF d2#patch_tab INT_VAR d2Tab = i target = TAB_TARGET_SELF_KEEP RET d2SkillLevel END
+            LPF d2#patch_tab INT_VAR d2Tab = i target = TAB_TARGET_SELF RET d2SkillLevel END
 
             // Remove all skill effects
             FOR(k = 0; k < d2CombatSkillCount; ++k)
